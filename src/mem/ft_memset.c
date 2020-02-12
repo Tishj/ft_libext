@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strsplits.c                                     :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 01:50:31 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 12:58:06 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 11:41:40 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 11:43:18 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	**ft_strsplits(char *str, char *set)
+void	ft_memset(void *mem, size_t len, char c)
 {
-	size_t	len;
 	size_t	i;
-	size_t	n;
-	char	**new;
+	char	*bytes;
 
+	bytes = (char *)mem;
 	i = 0;
-	n = 0;
-	len = ft_strslenb(str, set);
-	new = ft_calloc(sizeof(char *) * (len + 1));
-	while (n < len)
+	while (i < len)
 	{
-		new[n] = ft_strsdup(str + i, set);
-		i += ft_strslen(str + i, set);
-		i += ft_strskips(str + i, set);
-		n++;
+		bytes[i] = c;
+		i++;
 	}
-	new[n] = 0;
-	return (new);
 }

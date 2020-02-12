@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strsplits.c                                     :+:    :+:            */
+/*   ft_strslenb.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 01:50:31 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 12:58:06 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 12:55:58 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	**ft_strsplits(char *str, char *set)
+size_t	ft_strslenb(char *str, char *set)
 {
-	size_t	len;
 	size_t	i;
-	size_t	n;
-	char	**new;
+	size_t	len;
 
 	i = 0;
-	n = 0;
-	len = ft_strslenb(str, set);
-	new = ft_calloc(sizeof(char *) * (len + 1));
-	while (n < len)
+	len = 0;
+	while (str[i])
 	{
-		new[n] = ft_strsdup(str + i, set);
 		i += ft_strslen(str + i, set);
 		i += ft_strskips(str + i, set);
-		n++;
+		len++;
 	}
-	new[n] = 0;
-	return (new);
+	return (len);
 }

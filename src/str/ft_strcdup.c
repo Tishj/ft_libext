@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdupc.c                                       :+:    :+:            */
+/*   ft_strcdup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 01:56:37 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 11:45:48 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_strdupc(char *str, char c)
+char	*ft_strcdup(char *str, char c)
 {
 	size_t	len;
 	size_t	i;
@@ -20,7 +20,7 @@ char	*ft_strdupc(char *str, char c)
 
 	i = 0;
 	len = ft_strclen(str, c);
-	new = malloc(sizeof(char) * (len + 1));
+	new = ft_calloc(sizeof(char) * (len + 1));
 	while (i < len)
 	{
 		new[i] = str[i];

@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/12 22:55:44 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/13 00:12:45 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,22 @@ endif
 STR_DIR = str/
 CHR_DIR = chr/
 MEM_DIR = mem/
+NUM_DIR = num/
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
 		ft_chrmatchr.c \
+		ft_chrcprint.c \
+		ft_chrcprintfd.c \
+		ft_chrprint.c \
+		ft_chrprintc.c \
+		ft_chrprintfd.c \
+		ft_chrprintfdc.c \
+		ft_chrprintfds.c \
+		ft_chrprints.c \
+		ft_chrsprint.c \
 		ft_chrmatchw.c) \
+		$(addprefix $(NUM_DIR), ft_numprint.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
 		ft_memset.c) \
 		$(addprefix $(STR_DIR), ft_str2del.c \
@@ -45,6 +56,14 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strchain.c \
 		ft_strstr.c \
 		ft_strnstr.c \
+		ft_str2dup.c \
+		ft_str2prefix.c \
+		ft_str2suffix.c \
+		ft_strgenc.c \
+		ft_strnlenb.c \
+		ft_strnprint.c \
+		ft_strnump.c \
+		ft_strwprint.c \
 		ft_strinfix.c \
 		ft_strchaindelimc.c \
 		ft_strclen.c \

@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 19:28:20 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 00:13:14 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_str2dup(char **str)
+char	**ft_str2dup(char **str)
 {
 	size_t	len;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 22:55:27 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 00:13:21 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ size_t	ft_strrlen(char *str, char rstart, char rend);
 size_t	ft_strrlenc(char *str, char rstart, char rend, char c);
 size_t	ft_strrlens(char *str, char rstart, char rend, char *set);
 size_t	ft_strslen(char *str, char *set);
+size_t	ft_strnlenb(char *str, size_t n);
 size_t	ft_strslenb(char *str, char *set);
 size_t	ft_strslenc(char *str, char stop, char *set);
 size_t	ft_strslenrev(char *str, char *set);
@@ -86,6 +87,8 @@ size_t	ft_strskips(char *str, char *set);
 size_t	ft_strskipw(char *str);
 
 void	ft_strprint(char *str);
+void	ft_strnprint(char *str, size_t n);
+void	ft_strwprint(char *str);
 
 char	*ft_strstr(char *str, char *ndl);
 char	*ft_strnstr(char *str, char *ndl, size_t n);
@@ -107,5 +110,21 @@ char	*ft_strsuffix(char *str, char *suffix);
 
 char	*ft_strtrims(char *str, char *set);
 char	*ft_strtrimsf(char *str, char *set);
+
+int		ft_chrcprint(char c, char nope);
+int		ft_chrcprintfd(char c, char nope, int fd);
+int		ft_chrprint(char c);
+int		ft_chrprintc(char c, char yes);
+int		ft_chrprintfd(char c, int fd);
+int		ft_chrprintfdc(char c, char yes, int fd);
+int		ft_chrprintfds(char c, int fd, char *set);
+int		ft_chrprints(char c, char *set);
+int		ft_chrsprint(char c, char *set);
+
+void	ft_numprint(int nb);
+char	**ft_str2dup(char **str);
+void	ft_str2prefix(char **str, char *prefix);
+void	ft_str2suffix(char **str, char *suffix);
+char	*ft_strgenc(char c, size_t len);
 
 #endif

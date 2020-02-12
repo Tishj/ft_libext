@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:50:31 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 12:58:06 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 15:18:53 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_strsplits(char *str, char *set)
 	i = 0;
 	n = 0;
 	len = ft_strslenb(str, set);
-	new = ft_calloc(sizeof(char *) * (len + 1));
+	new = ft_calloc(sizeof(char *),(len + 1));
 	while (n < len)
 	{
 		new[n] = ft_strsdup(str + i, set);

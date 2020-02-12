@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 02:21:08 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 11:45:48 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 15:18:19 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_straddc(char *str, char c)
 {
 	char	*new;
 
-	new = ft_calloc(sizeof(char) * (ft_strlen(str) + 2));
+	new = ft_calloc(sizeof(char),(ft_strlen(str) + 2));
 	ft_strcpy(new, str);
 	ft_strcatc(new, c);
 	free(str);

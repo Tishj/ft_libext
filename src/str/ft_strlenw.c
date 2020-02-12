@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_chrmatchs.c                                     :+:    :+:            */
+/*   ft_strlenw.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 23:35:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 01:22:31 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 01:21:08 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 01:23:44 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	ft_chrmatchs(char c, char *set)
+size_t	ft_strlenw(char *str)
 {
 	size_t	i;
+	size_t	len;
 
 	i = 0;
-	while (set[i] && set[i] != c)
+	len = 0;
+	while (str[i])
+	{
+		if (ft_chrmatchw(str[i]))
+			len++;
 		i++;
-	return (set[i] == c) ? 1 : 0;
+	}
+	return (len);
 }

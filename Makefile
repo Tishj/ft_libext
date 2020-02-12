@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/12 01:02:24 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/12 01:44:10 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,11 @@ SRC = 	$(addprefix $(STR_DIR), ft_strclen.c \
 		ft_strrlens.c \
 		ft_strslen.c \
 		ft_strslenc.c \
+		ft_strlenw.c \
 		ft_strslens.c) \
 		$(addprefix $(CHR_DIR), ft_chrmatchs.c \
-		ft_chrmatchc.c)
+		ft_chrmatchc.c \
+		ft_chrmatchw.c)
 
 OBJ =	$(SRC:%.c=%.o)
 
@@ -48,7 +50,7 @@ $(NAME): $(addprefix $(SRC_DIR), $(OBJ))
 	ar -rcs $(NAME) $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
 
 clean:
-	rm -rf $(addprefix $(OBJ_DIR), $(OBJ))
+	rm -rf $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
 
 fclean: clean
 	rm -rf $(NAME)

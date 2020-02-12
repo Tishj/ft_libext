@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 01:02:54 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 01:24:30 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int		main(void)
 {
-	printf("len: %ld\n", ft_strlens("121451", "1"));
+	printf("len: %ld\n", ft_strlenw("121 		 	   	  451"));
 	return (1);
 }

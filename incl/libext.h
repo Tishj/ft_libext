@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 01:23:53 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 02:33:13 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,19 @@ size_t	ft_strrlens(char *str, char rstart, char rend, char *set);
 size_t	ft_strslen(char *str, char *set);
 size_t	ft_strslenc(char *str, char stop, char *set);
 size_t	ft_strslens(char *str, char *stop, char *set);
+
+size_t	ft_str2len(char **str);
+char	*ft_strdupc(char *str, char c);
+
+void	ft_strprint(char *str);
+void	ft_str2print(char **str);
+
+size_t	ft_strcpy(char *dst, char *src);
+size_t	ft_strcat(char *dst, char *src);
+char	*ft_stradd(char *str, char *add);
+char	*ft_strchain(char **str);
+char	**ft_strsplitc(char *str, char c);
+
+void	ft_str2del(char **str);
 
 #endif

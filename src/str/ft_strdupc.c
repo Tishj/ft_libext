@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strdupc.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 23:30:07 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 02:22:07 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 01:56:37 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strlen(char *str)
+char	*ft_strdupc(char *str, char c)
 {
+	size_t	len;
 	size_t	i;
+	char	*new;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i])
+	len = ft_strclen(str, c);
+	new = malloc(sizeof(char) * (len + 1));
+	while (i < len)
+	{
+		new[i] = str[i];
 		i++;
-	return (i);
+	}
+	new[i] = 0;
+	return (new);
 }

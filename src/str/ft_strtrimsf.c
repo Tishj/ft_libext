@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 14:41:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 15:23:06 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 16:53:22 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ char	*ft_strtrimsf(char *str, char *set)
 	size_t	len;
 	char	*new;
 	size_t	i;
-	size_t	n;
 
 	i = 0;
-	n = 0;
 	len = ft_strlen(str) - ft_strlens(str, set);
 	new = ft_calloc(sizeof(char),(len + 1));
 	while (str[i])

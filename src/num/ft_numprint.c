@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strscat.c                                       :+:    :+:            */
+/*   ft_numprint.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 02:26:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:51:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 21:25:53 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 21:27:28 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strscat(char *dst, char *src, char *set)
+void	ft_numprint(int nb)
 {
-	dst += ft_strlen(dst);
-	return (ft_strscpy(dst, src, set));
+	char	c;
+
+	if (nb != 0)
+		ft_numprint(nb / 10);
+	c = nb % 10;
+	write(1, &c, 1);
 }

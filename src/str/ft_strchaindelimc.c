@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 02:17:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 15:22:00 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 16:46:40 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,4 @@ char	*ft_strchaindelimc(char **str, char delim)
 	}
 	new = ft_stradd(new, str[i]);
 	return (new);
-}
-
-int		main(void)
-{
-	char	**new;
-	char	input[] = "1234,:.5:,,6.7.8.:,";
-	char	*str;
-
-/* 	new = ft_strsplits(input, ".,:");
-	ft_str2print(new);
-	str = ft_strchain(new);
-//	printf("block size: %ld\n", ft_strslenb(input, ".,:"));
-	ft_str2del(new); */
-	str = ft_strtrimsf(input, ".:,");
-	ft_strprint(str);
-	free(str);
-	return (1);
 }

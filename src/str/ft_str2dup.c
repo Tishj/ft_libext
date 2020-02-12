@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strscat.c                                       :+:    :+:            */
+/*   ft_str2dup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 02:26:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:51:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 19:28:20 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strscat(char *dst, char *src, char *set)
+char	*ft_str2dup(char **str)
 {
-	dst += ft_strlen(dst);
-	return (ft_strscpy(dst, src, set));
+	size_t	len;
+	size_t	i;
+	char	**new;
+
+	i = 0;
+	len = ft_str2len(str);
+	new = ft_calloc(sizeof(char *),(len + 1));
+	while (i < len)
+	{
+		new[i] = ft_strdup(str[i]);
+		i++;
+	}
+	new[i] = 0;
+	return (new);
 }

@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strscat.c                                       :+:    :+:            */
+/*   ft_chrmatchr.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 02:26:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:51:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 19:45:07 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 19:46:09 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strscat(char *dst, char *src, char *set)
+char	ft_chrmatchr(char c, char rstart, char rend)
 {
-	dst += ft_strlen(dst);
-	return (ft_strscpy(dst, src, set));
+	if (c >= rstart && c <= rend)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 12:31:32 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/12 17:27:04 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ size_t	ft_strclenb(char *str, char c)
 
 	i = 0;
 	len = 0;
+	i += ft_strskipc(str, c);
 	while (str[i])
 	{
-		i += ft_strskipc(str + ft_strclen(str, c), c);
 		len++;
+		i += ft_strclen(str + i, c);
+		i += ft_strskipc(str + i, c);
 	}
 	return (len);
 }

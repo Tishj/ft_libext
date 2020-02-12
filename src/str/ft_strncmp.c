@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strscat.c                                       :+:    :+:            */
+/*   ft_strncmp.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 02:26:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:51:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/12 21:00:44 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strscat(char *dst, char *src, char *set)
+char	ft_strncmp(char *str, char *s2, size_t n)
 {
-	dst += ft_strlen(dst);
-	return (ft_strscpy(dst, src, set));
+	size_t	i;
+
+	i = 0;
+	while ((i < n && (str[i] && s2[i])) && str[i] == s2[i])
+		i++;
+	return ((str[i] == 0 && s2[i] == 0) || i == n) ? 1 : 0;
 }

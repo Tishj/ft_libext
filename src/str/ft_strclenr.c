@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strsdup.c                                       :+:    :+:            */
+/*   ft_strclenr.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 11:47:36 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/13 17:26:18 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_strsdup(char *str, char *set)
+size_t	ft_strclenr(char *str, char c, char rstart, char rend)
 {
-	size_t	len;
 	size_t	i;
-	char	*new;
+	size_t	len;
 
 	i = 0;
-	len = ft_strslen(str, set);
-	new = ft_calloc(sizeof(char), (len + 1));
-	while (i < len)
+	len = 0;
+	while (str[i] && (!ft_chrmatchc(str[i], c)))
 	{
-		new[i] = str[i];
+		if (ft_chrmatchr(str[i], rstart, rend) == 1)
+			len++;
 		i++;
 	}
-	new[i] = 0;
-	return (new);
+	return (len);
 }

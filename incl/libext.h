@@ -6,16 +6,16 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 00:13:21 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 18:16:33 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBEXT_H
 # define LIBEXT_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 char	ft_chrmatchc(char c, char match);
 char	ft_chrmatchs(char c, char *set);
@@ -52,6 +52,7 @@ char	*ft_strwdup(char *str);
 char	*ft_strchain(char **str);
 char	*ft_strchaindelimc(char **str, char delim);
 
+size_t	ft_strnlenrevc(char *str, size_t n, char c);
 size_t	ft_strclen(char *str, char c);
 size_t	ft_strclenb(char *str, char c);
 size_t	ft_strclenc(char *str, char c, char match);
@@ -70,7 +71,7 @@ size_t	ft_strrlens(char *str, char rstart, char rend, char *set);
 size_t	ft_strslen(char *str, char *set);
 size_t	ft_strnlenb(char *str, size_t n);
 size_t	ft_strslenb(char *str, char *set);
-size_t	ft_strslenc(char *str, char stop, char *set);
+size_t	ft_strslenc(char *str, char *set, char c);
 size_t	ft_strslenrev(char *str, char *set);
 size_t	ft_strslens(char *str, char *stop, char *set);
 size_t	ft_strwlen(char *str);
@@ -121,6 +122,7 @@ int		ft_chrprintfds(char c, int fd, char *set);
 int		ft_chrprints(char c, char *set);
 int		ft_chrsprint(char c, char *set);
 
+void	ft_strshift(char *str, int shift);
 void	ft_numprint(int nb);
 char	**ft_str2dup(char **str);
 void	ft_str2prefix(char **str, char *prefix);

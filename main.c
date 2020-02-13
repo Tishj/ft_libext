@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 23:10:42 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 18:17:42 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,19 @@
 	return (0);
 } */
 
+/* int		main(void)
+{
+	char	str[] = "bieba";
+
+	ft_strshift(str, -1);
+	ft_strprint(str);
+	return (1);
+} */
+
+int		main(void)
+{
+	char	str[] = "bieboooo";
+
+	printf("%ld\n", ft_strnlenrevc(str, 5, 'o'));
+	return (0);
+}

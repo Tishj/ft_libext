@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:45:11 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 11:47:00 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strcdups(char *str, char c, char *set)
 	i = 0;
 	n = 0;
 	len = ft_strclens(str, c, set);
-	new = ft_calloc(sizeof(char),(len + 1));
+	new = ft_calloc(sizeof(char), (len + 1));
 	while (n < len)
 	{
 		if (ft_chrmatchs(str[i], set))

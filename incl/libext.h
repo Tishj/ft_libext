@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 18:16:33 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/14 15:10:49 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,37 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
+# define BASE "-b"
+# define LIMITS "nscrw"
+# define COUNT "-scrw"
+
+typedef struct	s_modifiers
+{
+	unsigned char	limit;
+	unsigned char	base;
+	unsigned char	count;
+}				t_modifiers;
+
+typedef struct	s_data
+{
+	t_modifiers	mods;
+	int			count;
+	size_t		lnum;
+	char		*limit;
+	char		*include;
+	char		*exclude;
+}				t_data;
+
+size_t	ft_strlenf(char *str, char *args, ...);
+size_t	ft_data_count(t_data *data, va_list list, char *str);
+void	ft_data_init(t_data *data);
+size_t	ft_data_parse(t_data *data, va_list list, char *str);
+size_t	ft_data_limit(t_data *data, va_list list, char *str);
+
+
+void	ft_chrswapc(char *a, char *b);
 char	ft_chrmatchc(char c, char match);
 char	ft_chrmatchs(char c, char *set);
 char	ft_chrmatchw(char c);
@@ -32,6 +62,7 @@ void	ft_str2print(char **str);
 char	*ft_stradd(char *str, char *add);
 char	*ft_straddc(char *str, char c);
 char	*ft_straddn(char *str, size_t n);
+char	*ft_straddr(char *str, char rstart, char rend);
 char	*ft_strnadd(char *str, char *add, size_t n);
 char	*ft_strsadd(char *str, char *add, char *set);
 
@@ -52,7 +83,7 @@ char	*ft_strwdup(char *str);
 char	*ft_strchain(char **str);
 char	*ft_strchaindelimc(char **str, char delim);
 
-size_t	ft_strnlenrevc(char *str, size_t n, char c);
+size_t	ft_strnlenrevc(char *str, long n, char c);
 size_t	ft_strclen(char *str, char c);
 size_t	ft_strclenb(char *str, char c);
 size_t	ft_strclenc(char *str, char c, char match);
@@ -75,6 +106,30 @@ size_t	ft_strslenc(char *str, char *set, char c);
 size_t	ft_strslenrev(char *str, char *set);
 size_t	ft_strslens(char *str, char *stop, char *set);
 size_t	ft_strwlen(char *str);
+size_t	ft_strclenr(char *str, char c, char rstart, char rend);
+size_t	ft_strclenrevc(char *str, char stop, char c);
+size_t	ft_strclenrevr(char *str, char stop, char rstart, char rend);
+size_t	ft_strclenrevs(char *str, char stop, char *set);
+size_t	ft_strlenr(char *str, char rstart, char rend);
+size_t	ft_strnlenr(char *str, size_t n, char rstart, char rend);
+size_t	ft_strnlenrevr(char *str, long n, char rstart, char rend);
+size_t	ft_strnlenrevs(char *str, long n, char *set);
+size_t	ft_strrlenb(char *str, char rstart, char rend);
+size_t	ft_strrlenrev(char *str, char rstart, char rend);
+size_t	ft_strrlenrevc(char *str, char rstart, char rend, char c);
+size_t	ft_strrlenrevs(char *str, char rstart, char rend, char *set);
+size_t	ft_strslenr(char *str, char *set, char rstart, char rend);
+size_t	ft_strslenrevc(char *str, char *set, char c);
+size_t	ft_strslenrevr(char *str, char *set, char rstart, char rend);
+size_t	ft_strslenrevs(char *str, char *set, char *set2);
+size_t	ft_strwlenb(char *str);
+size_t	ft_strwlenc(char *str, char c);
+size_t	ft_strwlenr(char *str, char rstart, char rend);
+size_t	ft_strwlenrev(char *str);
+size_t	ft_strwlenrevc(char *str, char c);
+size_t	ft_strwlenrevr(char *str, char rstart, char rend);
+size_t	ft_strwlenrevs(char *str, char *set);
+size_t	ft_strwlens(char *str, char *set);
 
 size_t	ft_strcpy(char *dst, char *src);
 size_t	ft_strncpy(char *dst, char *src, size_t len);
@@ -86,6 +141,11 @@ size_t	ft_strnskip(char *str, size_t len);
 size_t	ft_strskipc(char *str, char c);
 size_t	ft_strskips(char *str, char *set);
 size_t	ft_strskipw(char *str);
+size_t	ft_strnskipc(char *str, size_t len, char c);
+size_t	ft_strnskipr(char *str, size_t len, char rstart, char rend);
+size_t	ft_strnskips(char *str, size_t len, char *set);
+size_t	ft_strnskipw(char *str, size_t len);
+size_t	ft_strskipr(char *str, char rstart, char rend);
 
 void	ft_strprint(char *str);
 void	ft_strnprint(char *str, size_t n);
@@ -122,8 +182,9 @@ int		ft_chrprintfds(char c, int fd, char *set);
 int		ft_chrprints(char c, char *set);
 int		ft_chrsprint(char c, char *set);
 
-void	ft_strshift(char *str, int shift);
+void	ft_strshift(char *str, long long shift);
 void	ft_numprint(int nb);
+long long ft_absnum(long long nb);
 char	**ft_str2dup(char **str);
 void	ft_str2prefix(char **str, char *prefix);
 void	ft_str2suffix(char **str, char *suffix);

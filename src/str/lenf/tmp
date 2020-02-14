@@ -1,0 +1,7 @@
+.
+ft_data_count.c \
+ft_data_init.c \
+ft_data_limit.c \
+ft_data_parse.c \
+ft_strlenf.c \
+tmp

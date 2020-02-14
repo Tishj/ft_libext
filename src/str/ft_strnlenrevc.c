@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 18:13:49 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/13 23:41:36 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strnlenrevc(char *str, size_t n, char c)
+size_t	ft_strnlenrevc(char *str, long n, char c)
 {
 	size_t	i;
 	size_t	len;
@@ -23,7 +23,7 @@ size_t	ft_strnlenrevc(char *str, size_t n, char c)
 	if (n < 0)
 		return (0);
 	len = 0;
-	while (i > 0 && i > n)
+	while (i > 0 && (long)i > n)
 	{
 		if (ft_chrmatchc(str[i], c))
 			len++;

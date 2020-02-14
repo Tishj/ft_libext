@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnlenrevr.c                                   :+:    :+:            */
+/*   ft_straddr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 23:41:26 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 02:21:08 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/14 15:30:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strnlenrevr(char *str, long n, char rstart, char rend)
+char	*ft_straddr(char *str, char rstart, char rend)
 {
-	size_t	i;
-	size_t	len;
+	char	*new;
+	char	i;
 
-	i = ft_strlen(str);
-	i = (!i) ? 0 : i - 1;
-	n = i - n;
-	if (n < 0)
-		return (0);
-	len = 0;
-	while (i > 0 && (long)i > n)
+	i = rstart;
+	new = ft_calloc(sizeof(char), ft_strlen(str) +
+		(ft_absnum(rstart - rend) + 2));
+	ft_strcpy(new, str);
+	while ((rstart < rend) ? i <= rend : i >= rend)
 	{
-		if (ft_chrmatchr(str[i], rstart, rend))
-			len++;
-		i--;
+		ft_strcatc(new, i);
+		i = (rstart <= rend) ? i + 1 : i - 1;
 	}
-	return (len);
+	free(str);
+	return (new);
 }

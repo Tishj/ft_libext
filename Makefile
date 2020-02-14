@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/13 18:15:37 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/14 15:11:02 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,16 +37,25 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrprintfds.c \
 		ft_chrprints.c \
 		ft_chrsprint.c \
+		ft_chrswapc.c \
 		ft_chrmatchw.c) \
-		$(addprefix $(NUM_DIR), ft_numprint.c) \
+		$(addprefix $(NUM_DIR), ft_numprint.c \
+		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
 		ft_memset.c) \
 		$(addprefix $(STR_DIR), ft_str2del.c \
+		$(addprefix lenf/, \
+		ft_data_count.c \
+		ft_data_init.c \
+		ft_data_limit.c \
+		ft_data_parse.c \
+		ft_strlenf.c) \
 		ft_str2len.c \
 		ft_str2print.c \
 		ft_stradd.c \
 		ft_straddc.c \
 		ft_straddn.c \
+		ft_straddr.c \
 		ft_strcat.c \
 		ft_strcatc.c \
 		ft_strcmp.c \
@@ -54,6 +63,30 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strcdup.c \
 		ft_strcdups.c \
 		ft_strchain.c \
+		ft_strclenr.c \
+		ft_strclenrevc.c \
+		ft_strclenrevr.c \
+		ft_strclenrevs.c \
+		ft_strlenr.c \
+		ft_strnlenr.c \
+		ft_strnlenrevr.c \
+		ft_strnlenrevs.c \
+		ft_strrlenb.c \
+		ft_strrlenrev.c \
+		ft_strrlenrevc.c \
+		ft_strrlenrevs.c \
+		ft_strslenr.c \
+		ft_strslenrevc.c \
+		ft_strslenrevr.c \
+		ft_strslenrevs.c \
+		ft_strwlenb.c \
+		ft_strwlenc.c \
+		ft_strwlenr.c \
+		ft_strwlenrev.c \
+		ft_strwlenrevc.c \
+		ft_strwlenrevr.c \
+		ft_strwlenrevs.c \
+		ft_strwlens.c \
 		ft_strstr.c \
 		ft_strnstr.c \
 		ft_str2dup.c \
@@ -101,6 +134,11 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strskipc.c \
 		ft_strskips.c \
 		ft_strskipw.c \
+		ft_strnskipc.c \
+		ft_strnskipr.c \
+		ft_strnskips.c \
+		ft_strnskipw.c \
+		ft_strskipr.c \
 		ft_strshift.c \
 		ft_strslen.c \
 		ft_strslenb.c \

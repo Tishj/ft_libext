@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnlenrevr.c                                   :+:    :+:            */
+/*   ft_data_init.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 23:32:11 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 23:41:26 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/14 10:53:20 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/14 11:02:11 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-size_t	ft_strnlenrevr(char *str, long n, char rstart, char rend)
+void	ft_data_init(t_data *data)
 {
-	size_t	i;
-	size_t	len;
-
-	i = ft_strlen(str);
-	i = (!i) ? 0 : i - 1;
-	n = i - n;
-	if (n < 0)
-		return (0);
-	len = 0;
-	while (i > 0 && (long)i > n)
-	{
-		if (ft_chrmatchr(str[i], rstart, rend))
-			len++;
-		i--;
-	}
-	return (len);
+	data->mods.base = 0;
+	data->mods.count = 0;
+	data->mods.limit = 0;
+	data->exclude = NULL;
+	data->include = NULL;
+	data->limit = NULL;
+	data->lnum = 0;
+	data->count = 0;
 }

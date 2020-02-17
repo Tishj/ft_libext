@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 15:10:49 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/17 01:05:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # define BASE "-b"
 # define LIMITS "nscrw"
 # define COUNT "-scrw"
+
+typedef struct	s_list
+{
+	void			*item;
+	struct s_list	*next;
+}				t_list;
 
 typedef struct	s_modifiers
 {
@@ -40,6 +46,9 @@ typedef struct	s_data
 }				t_data;
 
 size_t	ft_strlenf(char *str, char *args, ...);
+size_t	ft_len(t_data *data, char *str);
+char	ft_countcheck(t_data *data, char c);
+char	ft_limitcheck(t_data *data, char c, size_t len);
 size_t	ft_data_count(t_data *data, va_list list, char *str);
 void	ft_data_init(t_data *data);
 size_t	ft_data_parse(t_data *data, va_list list, char *str);
@@ -184,10 +193,24 @@ int		ft_chrsprint(char c, char *set);
 
 void	ft_strshift(char *str, long long shift);
 void	ft_numprint(int nb);
+void	ft_numprintbase(int nb, int base, int minlen);
 long long ft_absnum(long long nb);
 char	**ft_str2dup(char **str);
 void	ft_str2prefix(char **str, char *prefix);
 void	ft_str2suffix(char **str, char *suffix);
 char	*ft_strgenc(char c, size_t len);
+
+void	ft_lstinfix(t_list **list, t_list *add, size_t n);
+long long	ft_lstindex(t_list *list, t_list *elem, size_t i);
+void	ft_lstprint(t_list *head, void (*p)(char *item));
+size_t	ft_lstlen(t_list *list);
+t_list	*ft_lstnew(void *item);
+t_list	*ft_lstnptr(t_list *list, size_t n);
+void	ft_lstprefix(t_list **list, t_list *add);
+t_list	**ft_lstprev(t_list **list, t_list *elem);
+t_list	*ft_lstptr(t_list *list);
+void	ft_lstrev(t_list **list);
+void	ft_lstsuffix(t_list **list, t_list *add);
+void	ft_lstswap(t_list **list, t_list *a, t_list *b);
 
 #endif

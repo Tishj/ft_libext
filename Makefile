@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/14 15:11:02 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/17 01:06:17 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ STR_DIR = str/
 CHR_DIR = chr/
 MEM_DIR = mem/
 NUM_DIR = num/
+LST_DIR = lst/
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -39,12 +40,28 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrsprint.c \
 		ft_chrswapc.c \
 		ft_chrmatchw.c) \
+		$(addprefix $(LST_DIR), ft_lstindex.c \
+		ft_lstinfix.c \
+		ft_lstlen.c \
+		ft_lstnew.c \
+		ft_lstnptr.c \
+		ft_lstprint.c \
+		ft_lstprefix.c \
+		ft_lstprev.c \
+		ft_lstptr.c \
+		ft_lstrev.c \
+		ft_lstsuffix.c \
+		ft_lstswap.c) \
 		$(addprefix $(NUM_DIR), ft_numprint.c \
+		ft_numprintbase.c \
 		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
 		ft_memset.c) \
 		$(addprefix $(STR_DIR), ft_str2del.c \
 		$(addprefix lenf/, \
+		ft_len.c \
+		ft_limitcheck.c \
+		ft_countcheck.c \
 		ft_data_count.c \
 		ft_data_init.c \
 		ft_data_limit.c \

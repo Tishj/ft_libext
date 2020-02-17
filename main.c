@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 15:32:03 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/17 01:17:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,32 @@
 	return (0);
 } */
 
+/* int		main(void)
+{
+	char	str[] = "b5yg354jh3g4h53g4j5g34jh5g346346j30g64jdg3jh46g";
+	size_t	len;
+	len = ft_strlenf(str, "-nc.-sc", 12, 'c', "012", 'd');
+//	len = strlen(str);
+	printf("length is: %ld\n", len);
+	return (0);
+} */
+
 int		main(void)
 {
-	char	str[] = "bieba.boeba.banaantjes";
+	t_list	*lst;
+	t_list	*elem;
+	char	s1[] = "lalal";
+	char	s2[] = "gwdjkf";
 
-	ft_strlenf(str, ".s-r", "set", '0', '9');
-	return (0);
+	lst = ft_lstnew(s1);
+	ft_lstprefix(&lst, ft_lstnew(s2));
+	ft_lstprefix(&lst, ft_lstnew(s1));
+	ft_lstprefix(&lst, ft_lstnew(s2));
+	elem = ft_lstnew(ft_strdup("findme"));
+	ft_lstinfix(&lst, elem, 3);
+	ft_lstprint(lst, &ft_strprint);
+	printf("index of elem is: %lld\n", ft_lstindex(lst, elem, 0));
+	return (1);
 }
 
 /* int		main(void)

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 10:18:17 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 12:45:12 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/15 15:40:33 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ size_t	ft_strlenf(char *str, char *args, ...)
 	while (args[i])
 		i += ft_data_parse(&data, list, &args[i]);
 	ft_debug(&data);
-//	return (ft_len(str, &data));
-	return (ft_strlen(str));
+	return (ft_len(&data, str));
 }

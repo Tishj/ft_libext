@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/18 00:13:15 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 23:50:52 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	ft_str2suffix(char **str, char *suffix);
 char	*ft_strgenc(char c, size_t len);
 
 void	ft_lstinfix(t_list **list, t_list *add, size_t n);
-long long	ft_lstindex(t_list *list, t_list *elem, size_t i);
+long long	ft_lstindex(t_list *list, t_list *elem);
 void	ft_lstprint(t_list *head, void (*p)(char *item));
 size_t	ft_lstlen(t_list *list);
 t_list	*ft_lstnew(void *item);

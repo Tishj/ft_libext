@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 23:26:46 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 23:51:16 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		main(void)
 	elem = ft_lstnew("findme");
 	ft_lstinfix(&lst, elem, 0);
 	ft_lstprint(lst, &ft_strprint);
-//	printf("index of elem is: %lld\n", ft_lstindex(lst, elem, 0));
+//	printf("index of elem is: %lld\n", ft_lstindex(lst, elem));
 	printf("size of list: %ld\n", ft_lstlen(lst));
 	ft_lstswap(&lst, lst, lst->next->next->next);
 	ft_lstprint(lst, &ft_strprint);

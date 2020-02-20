@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/16 23:20:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 23:32:47 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 23:55:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_lstswap(t_list **list, t_list *a, t_list *b)
 	t_list		*prev1;
 	t_list		*prev2;
 
-	a_idx = ft_lstindex(*list, a, 0);
-	b_idx = ft_lstindex(*list, b, 0);
+	a_idx = ft_lstindex(*list, a);
+	b_idx = ft_lstindex(*list, b);
 	if (a_idx == -1 || b_idx == -1)
 		return ;
 	a_first = b_idx > a_idx;

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/16 23:20:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/17 00:52:40 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 23:32:47 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 
 void	ft_lstswap(t_list **list, t_list *a, t_list *b)
 {
-	t_list		**prev1;
-	t_list		**prev2;
-	t_list		*next;
+	char		a_first;
+	long long	a_idx;
+	long long	b_idx;
+	t_list		*prev1;
+	t_list		*prev2;
 
-	prev1 = ft_lstprev(list, a);
-	prev2 = ft_lstprev(list, b);
-	if (!prev1 || !prev2)
+	a_idx = ft_lstindex(*list, a, 0);
+	b_idx = ft_lstindex(*list, b, 0);
+	if (a_idx == -1 || b_idx == -1)
 		return ;
-	next = a->next;
+	a_first = b_idx > a_idx;
+	prev1 = (a_first) ? ft_lstprev(list, a) : ft_lstprev(list, b);
+	prev2 = (a_first) ? ft_lstprev(&prev1, b) : ft_lstprev(&prev1, a);
+	if (prev1 == *list)
+		*list = (a_first) ? b : a;
+	else
+		prev1->next = (a_first) ? b : a;
+	prev2->next = (a_first) ? a : b;
+	prev1 = a->next;
 	a->next = b->next;
-	b->next = next;
-	*prev1 = b;
-	*prev2 = a;
+	b->next = prev1;
 }

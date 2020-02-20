@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:48:56 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/13 11:47:54 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 22:06:35 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	**ft_strsplitw(char *str, char c)
 	n = 0;
 	len = ft_strlenw(str) + 1;
 	new = ft_calloc(sizeof(char *), (len + 1));
+	if (!new)
+		return (NULL);
 	while (n < len)
 	{
 		new[n] = ft_strwdup(str + i);

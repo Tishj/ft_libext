@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/17 01:05:56 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/18 00:13:15 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ size_t	ft_lstlen(t_list *list);
 t_list	*ft_lstnew(void *item);
 t_list	*ft_lstnptr(t_list *list, size_t n);
 void	ft_lstprefix(t_list **list, t_list *add);
-t_list	**ft_lstprev(t_list **list, t_list *elem);
+t_list	*ft_lstprev(t_list **list, t_list *elem);
 t_list	*ft_lstptr(t_list *list);
 void	ft_lstrev(t_list **list);
 void	ft_lstsuffix(t_list **list, t_list *add);

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 22:49:36 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 23:06:37 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 22:07:07 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strinfix(char *dst, char *add, size_t index)
 	orig = dst;
 	len = ft_strlen(dst) + ft_strlen(add);
 	new = ft_calloc(sizeof(char), len + 1);
+	if (!new)
+		return (NULL);
 	i = ft_strncpy(new, dst, index);
 	dst += i;
 	i += ft_strcat(new + i, add);

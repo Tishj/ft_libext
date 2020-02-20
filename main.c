@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/17 01:17:46 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/20 23:26:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ int		main(void)
 	char	s1[] = "lalal";
 	char	s2[] = "gwdjkf";
 
-	lst = ft_lstnew(s1);
-	ft_lstprefix(&lst, ft_lstnew(s2));
-	ft_lstprefix(&lst, ft_lstnew(s1));
-	ft_lstprefix(&lst, ft_lstnew(s2));
-	elem = ft_lstnew(ft_strdup("findme"));
-	ft_lstinfix(&lst, elem, 3);
+	lst = ft_lstnew("one");
+	ft_lstsuffix(&lst, ft_lstnew("two"));
+	ft_lstprefix(&lst, ft_lstnew("three"));
+	ft_lstprefix(&lst, ft_lstnew("four"));
+	elem = ft_lstnew("findme");
+	ft_lstinfix(&lst, elem, 0);
 	ft_lstprint(lst, &ft_strprint);
-	printf("index of elem is: %lld\n", ft_lstindex(lst, elem, 0));
+//	printf("index of elem is: %lld\n", ft_lstindex(lst, elem, 0));
+	printf("size of list: %ld\n", ft_lstlen(lst));
+	ft_lstswap(&lst, lst, lst->next->next->next);
+	ft_lstprint(lst, &ft_strprint);
 	return (1);
 }
 

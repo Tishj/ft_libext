@@ -6,24 +6,25 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 00:43:29 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/17 01:03:02 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/18 00:29:04 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-t_list	**ft_lstprev(t_list **list, t_list *elem)
+//if elem == ROOT && (*ROOT)->next == elem
+//	both return (elem);
+
+t_list	*ft_lstprev(t_list **list, t_list *elem)
 {
-	long long	index;
-	t_list		**ret;
 	t_list		*tmp;
 
-	index = ft_lstindex(*list, elem, 0);
-	if (index < 0)
+	if (!list)
 		return (NULL);
-	if (index == 0)
-		return (list);
-	tmp = ft_lstnptr(*list, index - 1);
-	ret = &tmp;
-	return (ret);
+	if (elem == *list)
+		return (elem);
+	tmp = *list;
+	while (tmp->next && tmp->next != elem)
+		tmp = tmp->next;
+	return (tmp->next == elem) ? (tmp) : NULL;
 }

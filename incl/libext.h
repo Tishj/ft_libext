@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 12:20:53 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/21 12:51:59 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ size_t	ft_data_count(t_data *data, va_list list, char *str);
 void	ft_data_init(t_data *data);
 size_t	ft_data_parse(t_data *data, va_list list, char *str);
 size_t	ft_data_limit(t_data *data, va_list list, char *str);
-
+void	ft_debug(t_data *data);
 
 void	ft_chrswapc(char *a, char *b);
 char	ft_chrmatchc(char c, char match);
@@ -207,17 +207,34 @@ void	ft_str2prefix(char **str, char *prefix);
 void	ft_str2suffix(char **str, char *suffix);
 char	*ft_strgenc(char c, size_t len);
 
+void	*ft_plstnew(void *item, int priority);
+
+void	*ft_pquepop(t_plist **list);
+void	ft_pquepush(t_plist **list, void *item, int priority);
+void	*ft_quepop(t_list **list);
+void	ft_quepush(t_list **list, void *item);
+
+void	*ft_pstkpop(t_plist **list);
+void	ft_pstkpush(t_plist **list, void *item, int priority);
+void	*ft_stkpop(t_list **list);
+void	ft_stkpush(t_list **list, void *item);
+
 void	ft_lstinfix(t_list **list, t_list *add, size_t n);
 long long	ft_lstindex(t_list *list, t_list *elem);
 void	ft_lstprint(t_list *head, void (*p)(char *item));
+void	ft_lstdel(t_list **list, t_list *elem, void (*del)(void *item));
+char	ft_lstcmp(void *a, void *b, char (*cmp)(void *item1, void *item2));
 size_t	ft_lstlen(t_list *list);
 t_list	*ft_lstnew(void *item);
 t_list	*ft_lstnptr(t_list *list, size_t n);
 void	ft_lstprefix(t_list **list, t_list *add);
+void	ft_plstprefix(t_plist **list, t_plist *add);
 t_list	*ft_lstprev(t_list **list, t_list *elem);
 t_list	*ft_lstptr(t_list *list);
+t_plist	*ft_plstptr(t_plist *list);
 void	ft_lstrev(t_list **list);
 void	ft_lstsuffix(t_list **list, t_list *add);
+void	ft_plstsuffix(t_plist **list, t_plist *add);
 void	ft_lstswap(t_list **list, t_list *a, t_list *b);
 
 #endif

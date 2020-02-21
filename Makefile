@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/17 01:06:17 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/21 12:49:36 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ CHR_DIR = chr/
 MEM_DIR = mem/
 NUM_DIR = num/
 LST_DIR = lst/
+QUE_DIR = que/
+STK_DIR = stk/
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -51,12 +53,26 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_lstptr.c \
 		ft_lstrev.c \
 		ft_lstsuffix.c \
+		ft_lstdel.c \
+		ft_lstcmp.c \
+		ft_plstnew.c \
+		ft_plstptr.c \
+		ft_plstsuffix.c \
+		ft_plstprefix.c \
 		ft_lstswap.c) \
 		$(addprefix $(NUM_DIR), ft_numprint.c \
 		ft_numprintbase.c \
 		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
 		ft_memset.c) \
+		$(addprefix $(STK_DIR), ft_stkpush.c \
+		ft_stkpop.c \
+		ft_pstkpop.c \
+		ft_pstkpush.c) \
+		$(addprefix $(QUE_DIR), ft_quepush.c \
+		ft_quepop.c \
+		ft_pquepop.c \
+		ft_pquepush.c) \
 		$(addprefix $(STR_DIR), ft_str2del.c \
 		$(addprefix lenf/, \
 		ft_len.c \

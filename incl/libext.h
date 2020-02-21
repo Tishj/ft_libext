@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 23:50:52 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/21 12:20:53 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct	s_list
 	void			*item;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_plist
+{
+	void			*item;
+	struct s_plist	*next;
+	int				priority;
+}				t_plist;
 
 typedef struct	s_modifiers
 {

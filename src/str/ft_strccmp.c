@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstprev.c                                       :+:    :+:            */
+/*   ft_strccmp.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 00:43:29 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:19:37 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/13 19:32:13 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**if elem == ROOT && (*ROOT)->next == elem
-**both return (elem);
-*/
-
-t_list	*ft_lstprev(t_list **list, t_list *elem)
+char	ft_strccmp(char *str, char *s2, char c)
 {
-	t_list		*tmp;
+	size_t	i;
 
-	if (!list)
-		return (NULL);
-	if (elem == *list)
-		return (elem);
-	tmp = *list;
-	while (tmp->next && tmp->next != elem)
-		tmp = tmp->next;
-	return (tmp->next == elem) ? (tmp) : NULL;
+	i = 0;
+	while ((!ft_chrmatchc(str[i], c) && (str[i] && s2[i])) && str[i] == s2[i])
+		i++;
+	return ((str[i] == 0 && s2[i] == 0) || i == n) ? 1 : 0;
 }

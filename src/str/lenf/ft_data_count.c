@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 11:51:41 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 15:32:54 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/21 11:21:47 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_data_count_excl(t_data *data, va_list list, char *str)
 {
-	static const char	whitespaces[] = {0x09,0x0A,0x0B,0x0C,0x0D,' ','\0'};
+	static const char	whitespaces[] = "\t\n\v\f\r ";
 	char				rstart;
 	char				rend;
 
@@ -39,9 +39,9 @@ size_t	ft_data_count_excl(t_data *data, va_list list, char *str)
 
 size_t	ft_data_count_incl(t_data *data, va_list list, char *str)
 {
-	static const char	whitespaces[] = {0x09,0x0A,0x0B,0x0C,0x0D,' ','\0'};
-	char	rstart;
-	char	rend;
+	static const char	whitespaces[] = "\t\n\v\f\r ";
+	char				rstart;
+	char				rend;
 
 	if (ft_chrmatchc(*str, 'c'))
 		data->include = ft_straddc(data->include, va_arg(list, int));

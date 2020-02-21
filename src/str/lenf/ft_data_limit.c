@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 11:51:01 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 15:38:22 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/21 11:21:23 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_data_limit(t_data *data, va_list list, char *str)
 {
-	static const char	whitespaces[] = {0x09,0x0A,0x0B,0x0C,0x0D,' ','\0'};
+	static const char	whitespaces[] = "\t\n\v\f\r ";
 	char				rstart;
 	char				rend;
 

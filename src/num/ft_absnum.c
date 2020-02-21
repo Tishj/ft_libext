@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 21:25:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/14 11:27:42 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/21 11:15:54 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-long long ft_absnum(long long nb)
+long long	ft_absnum(long long nb)
 {
-	return (nb > 0) ? nb : nb * - 1;
+	return ((nb > 0) ? nb : nb * -1);
 }

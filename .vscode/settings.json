@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"libext.h": "c"
-	}
+	},
+	"search.usePCRE2": true
 }

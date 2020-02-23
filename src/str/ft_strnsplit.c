@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strccmp.c                                       :+:    :+:            */
+/*   ft_strnsplit.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/22 13:34:13 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 01:48:56 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/22 22:36:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	ft_strccmp(char *str, char *s2, char c)
+char	**ft_strnsplit(char *str, size_t n)
 {
+	size_t	len;
 	size_t	i;
+	char	**new;
 
 	i = 0;
-	while ((str[i] && s2[i]) && str[i] == s2[i] &&
-		((!ft_chrmatchc(str[i], c)) || (!ft_chrmatchc(s2[i], c))))
+	len = ft_strnlenb(str, n);
+	new = ft_calloc(sizeof(char *), (len + 1));
+	if (!new)
+		return (NULL);
+	while (i < len)
+	{
+		new[i] = ft_strndup(str, n);
+		str += ft_strnlen(str, n);
 		i++;
-	return ((!str[i] && !s2[i]) ||
-			(ft_chrmatchc(str[i], c) || (ft_chrmatchc(s2[i], c)))) ? 0 :
-			str[i] - s2[i];
+	}
+	new[i] = 0;
+	return (new);
 }

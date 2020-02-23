@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strccmp.c                                       :+:    :+:            */
+/*   ft_strconvu.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/22 13:34:13 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/23 16:48:25 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/23 16:50:36 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	ft_strccmp(char *str, char *s2, char c)
+void	ft_strconvu(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while ((str[i] && s2[i]) && str[i] == s2[i] &&
-		((!ft_chrmatchc(str[i], c)) || (!ft_chrmatchc(s2[i], c))))
+	while (str[i])
+	{
+		if (ft_chrmatchr(str[i], 'a', 'z'))
+			str[i] = (str[i] - 'a') + 'A';
 		i++;
-	return ((!str[i] && !s2[i]) ||
-			(ft_chrmatchc(str[i], c) || (ft_chrmatchc(s2[i], c)))) ? 0 :
-			str[i] - s2[i];
+	}
 }

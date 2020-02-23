@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/21 12:49:36 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/22 23:40:43 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ NUM_DIR = num/
 LST_DIR = lst/
 QUE_DIR = que/
 STK_DIR = stk/
+FD_DIR = fd/
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -42,6 +43,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrsprint.c \
 		ft_chrswapc.c \
 		ft_chrmatchw.c) \
+		$(addprefix $(FD_DIR), ft_fdchar.c \
+		ft_fdstrc.c) \
 		$(addprefix $(LST_DIR), ft_lstindex.c \
 		ft_lstinfix.c \
 		ft_lstlen.c \
@@ -92,6 +95,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strcat.c \
 		ft_strcatc.c \
 		ft_strcmp.c \
+		ft_strccmp.c \
 		ft_strncmp.c \
 		ft_strcdup.c \
 		ft_strcdups.c \
@@ -179,9 +183,10 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strslenc.c \
 		ft_strslenrev.c \
 		ft_strslens.c \
-		ft_strsplitc.c \
-		ft_strsplits.c \
-		ft_strsplitw.c \
+		ft_strcsplit.c \
+		ft_strssplit.c \
+		ft_strnsplit.c \
+		ft_strwsplit.c \
 		ft_strsuffix.c \
 		ft_strtrims.c \
 		ft_strtrimsf.c \

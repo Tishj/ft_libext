@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 12:51:59 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/22 23:40:31 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 # define BASE "-b"
 # define LIMITS "nscrw"
 # define COUNT "-scrw"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 40
+# endif
 
 typedef struct	s_list
 {
@@ -61,6 +68,9 @@ void	ft_data_init(t_data *data);
 size_t	ft_data_parse(t_data *data, va_list list, char *str);
 size_t	ft_data_limit(t_data *data, va_list list, char *str);
 void	ft_debug(t_data *data);
+
+int		ft_fdchar(int fd, char *c);
+int		ft_fdstrc(int fd, char **line, char c);
 
 void	ft_chrswapc(char *a, char *b);
 char	ft_chrmatchc(char c, char match);
@@ -174,12 +184,14 @@ char	ft_strnump(char *str, int *val);
 
 char	ft_strcmp(char *str, char *s2);
 char	ft_strncmp(char *str, char *s2, size_t n);
+char	ft_strccmp(char *str, char *s2, char c);
 
 void	ft_strrev(char *str);
 
-char	**ft_strsplitc(char *str, char c);
-char	**ft_strsplits(char *str, char *set);
-char	**ft_strsplitw(char *str, char c);
+char	**ft_strcsplit(char *str, char c);
+char	**ft_strssplit(char *str, char *set);
+char	**ft_strwsplit(char *str, char c);
+char	**ft_strnsplit(char *str, size_t n);
 
 char	*ft_strinfix(char *dst, char *add, size_t index);
 char	*ft_strprefix(char *str, char *prefix);

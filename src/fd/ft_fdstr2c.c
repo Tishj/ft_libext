@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strccmp.c                                       :+:    :+:            */
+/*   ft_fdstr2c.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/22 13:34:13 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/23 11:34:41 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	ft_strccmp(char *str, char *s2, char c)
+int				ft_fdstr2c(int fd, char ***line, char c)
 {
+	char	**str;
+	int		ret;
 	size_t	i;
 
 	i = 0;
-	while ((str[i] && s2[i]) && str[i] == s2[i] &&
-		((!ft_chrmatchc(str[i], c)) || (!ft_chrmatchc(s2[i], c))))
+	str = ft_calloc(sizeof(char *), 10 + 1);
+	ret = ft_fdstrc(fd, &str[i], c);
+	while (ret > -1)
+	{
+		if (i % 10 == 0)
+			ft_str2add(str, 10);
 		i++;
-	return ((!str[i] && !s2[i]) ||
-			(ft_chrmatchc(str[i], c) || (ft_chrmatchc(s2[i], c)))) ? 0 :
-			str[i] - s2[i];
+		if (ret == 0)
+			break;
+		ret = ft_fdstrc(fd, &str[i], c);
+	}
+	str[i] = 0;
+	*line = ft_str2dup(str);
+	free(str);
+	return (i);
 }

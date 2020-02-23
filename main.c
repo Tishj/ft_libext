@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 23:51:16 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/23 00:05:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,43 @@
 	return (0);
 } */
 
-int		main(void)
+int		main(int argc, char **input)
+{
+	int		fd;
+	char	*str;
+	char	c;
+	int		ret;
+
+	if (argc != 2)
+		return (1);
+	fd = open(input[1], O_RDONLY);
+	ret = ft_fdstrc(fd, &str, '\n');
+	while (ret > -1)
+	{
+		ft_strprint(str);
+		free(str);
+		str = NULL;
+		if (ret == 0)
+			break ;
+		ret = ft_fdstrc(fd, &str, '\n');
+	}
+	return (0);
+}
+
+/* int		main(void)
+{
+	char	str[] = "lalalalalalala";
+	char	*s1;
+	char	**str2;
+
+	str2 = ft_strnsplit(str, 3);
+	ft_str2print(str2);
+	s1 = ft_strchaindelimc(str2, ',');
+	ft_strprint(s1);
+	return (0);
+} */
+
+/* int		main(void)
 {
 	t_list	*lst;
 	t_list	*elem;
@@ -87,7 +123,15 @@ int		main(void)
 	ft_lstswap(&lst, lst, lst->next->next->next);
 	ft_lstprint(lst, &ft_strprint);
 	return (1);
-}
+} */
+
+/* int		main(void)
+{
+	char	s1[] = "lalaba";
+	char	s2[] = "lalala";
+
+	return (printf("return of strccmp = %d\n", (int)ft_strccmp(s1, s2, 'c')));
+} */
 
 /* int		main(void)
 {

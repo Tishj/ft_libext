@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strccmp.c                                       :+:    :+:            */
+/*   ft_fdchar.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 20:32:16 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/22 13:34:13 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/22 23:17:43 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	ft_strccmp(char *str, char *s2, char c)
+int	ft_fdchar(int fd, char *c)
 {
-	size_t	i;
+	static char	buffer[BUFFER_SIZE + 1];
+	static char	*iter;
+	static int	ret;
 
-	i = 0;
-	while ((str[i] && s2[i]) && str[i] == s2[i] &&
-		((!ft_chrmatchc(str[i], c)) || (!ft_chrmatchc(s2[i], c))))
-		i++;
-	return ((!str[i] && !s2[i]) ||
-			(ft_chrmatchc(str[i], c) || (ft_chrmatchc(s2[i], c)))) ? 0 :
-			str[i] - s2[i];
+	if (!iter || (iter - buffer) >= ret)
+	{
+		iter = buffer;
+		ft_memset(buffer, BUFFER_SIZE, 0);
+		ret = read(fd, buffer, BUFFER_SIZE);
+	}
+	if (ret > 0)
+	{
+		*c = *iter;
+		iter++;
+	}
+	return (ret);
 }

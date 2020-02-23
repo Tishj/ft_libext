@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 20:25:07 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 21:50:32 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/22 13:43:22 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strstr(char *str, char *ndl)
 	{
 		if (str[i] != ndl[0])
 			i += ft_strclen(str + i, ndl[0]);
-		if (ft_strncmp(str + i, ndl, ft_strlen(ndl)))
+		if (!ft_strncmp(str + i, ndl, ft_strlen(ndl)))
 			return (str + i);
 		i++;
 	}

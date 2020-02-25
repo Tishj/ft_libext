@@ -12,4 +12,10 @@
 
 #include "libext.h"
 
-char		ft_hshset(char *table, )
+char		ft_hshset(void **table, char *identifier, void *ptr)
+{
+	size_t	index;
+
+	index = ft_hshfunct(identifier)
+
+}

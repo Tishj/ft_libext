@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/23 00:07:54 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:00:13 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-static char		*ft_strncdup(char *str, size_t n, char c)
+static HEAP		*ft_strncdup(char *str, size_t n, char c)
 {
 	int		climit;
 	char	*new;
@@ -40,9 +40,9 @@ int				ft_fdstrc(int fd, char **line, char c)
 	size_t	i;
 
 	i = 0;
-	if (read(fd, (void *)0, 0) == -1)
+	if (!line || read(fd, (void *)0, 0) == -1)
 		return (-1);
-	str = ft_calloc(sizeof(char), BUFFER_SIZE);
+ 	str = ft_calloc(sizeof(char), 1);
 	if (!str)
 		return (-1);
 	ret = ft_fdchar(fd, &str[i]);

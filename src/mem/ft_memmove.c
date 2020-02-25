@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 20:40:07 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/24 16:57:48 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/24 18:41:20 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include <string.h>
 
-char	*ft_strnump(char *str, int *val)
+void	ft_memmove(void *dst, void *src, size_t n)
 {
-	int		ret;
-	int		n;
+	unsigned char	*dest;
+	unsigned char	*source;
+	char			rev;
+	size_t			i;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	if (!dst || !src || !n)
+		return ;
+	rev = (dst > src && src + n > dst);
+	i = 0;
+	dest = dst;
+	source = src;
+	while (i < n)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		if (rev)
+			dest[(n - 1) - i] = source[(n - 1) - i];
+		else
+			dest[i] = source[i];
+		i++;
 	}
-	*val = (ret * n);
-	return (str);
 }

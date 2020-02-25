@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/22 23:40:31 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 20:55:07 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,28 @@
 # define BASE "-b"
 # define LIMITS "nscrw"
 # define COUNT "-scrw"
+# define CONVERSION "scdiouxXp%"
+# define FLAG "0123456789.*"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 40
+#  define BUFFER_SIZE 128
 # endif
+
+#define HEAP void
+
+enum			e_conversions
+{
+	EMPTY = 0,
+	STR,
+	CHR,
+	DIG,
+	INT,
+	HEXU,
+	HEXL,
+	PTR,
+	UINT,
+	OCT,
+};
 
 typedef struct	s_list
 {
@@ -84,6 +102,9 @@ void	ft_memset(void *mem, size_t len, char c);
 void	ft_str2del(char **str);
 size_t	ft_str2len(char **str);
 void	ft_str2print(char **str);
+
+char	*ft_strsep(char *str, char *delimiter);
+char	*ft_strtok(char *str, char *delimiter);
 
 char	*ft_stradd(char *str, char *add);
 char	*ft_straddc(char *str, char c);
@@ -180,7 +201,7 @@ void	ft_strwprint(char *str);
 char	*ft_strstr(char *str, char *ndl);
 char	*ft_strnstr(char *str, char *ndl, size_t n);
 
-char	ft_strnump(char *str, int *val);
+char	*ft_strnump(char *str, int *val);
 
 char	ft_strcmp(char *str, char *s2);
 char	ft_strncmp(char *str, char *s2, size_t n);
@@ -237,7 +258,7 @@ void	ft_lstprint(t_list *head, void (*p)(char *item));
 void	ft_lstdel(t_list **list, t_list *elem, void (*del)(void *item));
 char	ft_lstcmp(void *a, void *b, char (*cmp)(void *item1, void *item2));
 size_t	ft_lstlen(t_list *list);
-t_list	*ft_lstnew(void *item);
+HEAP	*ft_lstnew(void *item);
 t_list	*ft_lstnptr(t_list *list, size_t n);
 void	ft_lstprefix(t_list **list, t_list *add);
 void	ft_plstprefix(t_plist **list, t_plist *add);

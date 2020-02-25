@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_memcdup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 20:40:07 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/24 16:51:30 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/24 18:47:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_strnump(char *str, int *val)
+HEAP	*ft_memcdup(void *mem, size_t n, char c)
 {
-	int		ret;
-	int		n;
+	size_t	i;
+	HEAP	*new;
+	char	*bytes;
+	char	limit;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	i = 0;
+	if (!mem)
+		return (NULL);
+	limit = ft_memclen(mem, n, c);
+	bytes = (char *)mem;
+	n = (limit < n) ? limit : n;
+	new = ft_calloc(sizeof(char), n);
+	if (!new)
+		return (NULL);
+	while (i < n && bytes[i] != c)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		*((char *)new + i) = bytes[i];
+		i++;
 	}
-	*val = (ret * n);
-	return (str);
+	return (new);
 }

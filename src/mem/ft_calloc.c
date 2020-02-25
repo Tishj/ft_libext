@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 11:39:07 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 15:21:42 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 11:04:30 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-void	*ft_calloc(size_t size, size_t len)
+HEAP	*ft_calloc(size_t size, size_t len)
 {
 	void	*new;
 

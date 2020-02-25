@@ -6,11 +6,12 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/23 00:05:56 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:43:02 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include <string.h>
 
 /* int		main(void)
 {
@@ -72,24 +73,85 @@ int		main(int argc, char **input)
 {
 	int		fd;
 	char	*str;
-	char	c;
 	int		ret;
+	size_t	i;
 
+	i = 1;
 	if (argc != 2)
 		return (1);
 	fd = open(input[1], O_RDONLY);
 	ret = ft_fdstrc(fd, &str, '\n');
 	while (ret > -1)
 	{
-		ft_strprint(str);
+		printf("%s", str);
+		if (ret == 1)
+			printf("\n");
 		free(str);
 		str = NULL;
 		if (ret == 0)
 			break ;
 		ret = ft_fdstrc(fd, &str, '\n');
+		i++;
 	}
 	return (0);
 }
+
+/* int		main(void)
+{
+	char	str[] = "//b/";
+	char	*str2;
+	char	*ret;
+	size_t	i;
+
+	i = 0;
+	str2 = ft_strdup(str);
+	ret = ft_strtok(str, "/");
+	while (ret)
+	{
+		printf("%ld | %s\n", i, ret);
+		ret = ft_strtok(NULL, "/");
+		i++;
+	}
+	printf("END OF MINE\n");
+	i = 0;
+	ret = strtok(str2, "/");
+	while (ret)
+	{
+		printf("%ld | %s\n", i, ret);
+		ret = strtok(NULL, "/");
+		i++;
+	}
+	printf("END OF ORIG\n");
+	return (1);
+} */
+
+/* int		main(void)
+{
+	char	str[] = "//yeet/this/is/a//test/.exe";
+	char	*str2;
+	char	*ret;
+	size_t	i;
+
+	i = 0;
+	str2 = ft_strdup(str);
+	ret = ft_strsep(str, "/");
+	while (ret)
+	{
+		printf("%ld | %s\n", i, ret);
+		ret = ft_strsep(NULL, "/");
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	ret = strsep(&str2, "/");
+	while (ret)
+	{
+		printf("%ld | %s\n", i, ret);
+		ret = strsep(&str2, "/");
+		i++;
+	}
+	return (1);
+} */
 
 /* int		main(void)
 {

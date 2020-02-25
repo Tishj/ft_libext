@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/23 11:34:41 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 19:49:33 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int				ft_fdstr2c(int fd, char ***line, char c)
 
 	i = 0;
 	str = ft_calloc(sizeof(char *), 10 + 1);
+	if (!str)
+		return (0);
+	
 	ret = ft_fdstrc(fd, &str[i], c);
 	while (ret > -1)
 	{

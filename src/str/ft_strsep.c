@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strtok.c                                        :+:    :+:            */
+/*   ft_strsep.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/23 17:06:59 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 12:20:53 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/24 12:15:34 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 #include "string.h"
 
-char	*ft_strtok(char *str, char *delimiter)
+char	*ft_strsep(char *str, char *delimiter)
 {
 	static char	*buffer;
 	char		*ret;
@@ -38,5 +38,5 @@ char	*ft_strtok(char *str, char *delimiter)
 		ret = buffer;
 		buffer += i;
 	}
-	return (i) ? (ret) : ft_strtok(NULL, delimiter);
+	return (ret);
 }

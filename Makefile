@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/22 23:40:43 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/02/24 16:24:42 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ OBJ_DIR = ./obj/
 
 ifdef DEBUG
 	FLAGS += -g -fsanitize=address
+endif
+ifdef BUFFER_SIZE
+	FLAGS += -D BUFFER_SIZE=$(BUFFER_SIZE)
 endif
 
 STR_DIR = str/
@@ -86,6 +89,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_data_limit.c \
 		ft_data_parse.c \
 		ft_strlenf.c) \
+		ft_strsep.c \
+		ft_strtok.c \
 		ft_str2len.c \
 		ft_str2print.c \
 		ft_stradd.c \

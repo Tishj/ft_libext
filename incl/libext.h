@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 20:55:07 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/27 00:17:35 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ typedef struct	s_list
 	void			*item;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_dlist
+{
+	void			*item;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}				t_dlist;
 
 typedef struct	s_plist
 {
@@ -251,6 +258,18 @@ void	*ft_pstkpop(t_plist **list);
 void	ft_pstkpush(t_plist **list, void *item, int priority);
 void	*ft_stkpop(t_list **list);
 void	ft_stkpush(t_list **list, void *item);
+
+HEAP	*ft_dlstnew(void *item, void *prev);
+void	ft_dlstdel(t_dlist **head, t_dlist *del, void (*f)(void *item));
+void	ft_dlstclearright(t_dlist **head, t_dlist *elem, void (*f)(void *item));
+void	ft_dlstclearleft(t_dlist **head, t_dlist *elem, void (*f)(void *item));
+void	ft_dlstadd(t_dlist **head, t_dlist *add);
+void	ft_dlstaddback(t_dlist **head, t_dlist *add);
+void	ft_dlistaddbehind(t_dlist *elem, t_dlist *add);
+void	ft_dlstaddfront(t_dlist **head, t_dlist *add);
+void	ft_dlistaddinfront(t_dlist *elem, t_dlist *add);
+void	ft_dlstprint(t_dlist **head);
+void	ft_dlstswap(t_dlist **head, t_dlist *a, t_dlist *b);
 
 void	ft_lstinfix(t_list **list, t_list *add, size_t n);
 long long	ft_lstindex(t_list *list, t_list *elem);

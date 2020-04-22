@@ -6,12 +6,11 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 11:48:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 15:01:12 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:42:10 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
-#include <string.h>
 
 char	*ft_strblockrevget(char *str, char *delim, size_t index)
 {
@@ -21,7 +20,6 @@ char	*ft_strblockrevget(char *str, char *delim, size_t index)
 
 	i = 1;
 	blocks = ft_strslenb(str, delim);
-	printf("blocks: %ld\n", blocks);
 	ret = ft_strtok(str, delim);
 	while (i < (blocks - index))
 	{
@@ -29,14 +27,4 @@ char	*ft_strblockrevget(char *str, char *delim, size_t index)
 		i++;
 	}
 	return (ret);
-}
-
-int		main(void)
-{
-	char	str[] = "yeet/this/is/a/test/.exe/";
-	char	*ret;
-
-	ret = ft_strblockrevget(str, "/", 3);
-	printf("str block [blocklen - 1] = %s\n", ret);
-	return (1);
 }

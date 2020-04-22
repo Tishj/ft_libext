@@ -6,13 +6,14 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/21 11:18:15 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:18:22 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:44 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
-void	ft_debug(t_data *data)
+void	ft_debug(t_lenf *data)
 {
 	printf("----DATA:----\n");
 	printf("--BASE MODIFIERS:--\n");

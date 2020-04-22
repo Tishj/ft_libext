@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_treebfirst.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/28 10:41:58 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/28 12:36:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+t_tree	*ft_treebfirst(t_tree *root, int (*f)(void *item, void *cmp), t_list *queue, void *cmp)
 {
-	int		ret;
-	int		n;
+	t_tree	*tmp;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	if (!root)
+		return (NULL);
+	if (!(f(root->item, cmp)))
+		return (root);
+	if (root->left)
+		ft_quepush(&queue, root->left);
+	if (root->right)
+		ft_quepush(&queue, root->right);
+	if (queue)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		tmp = ft_quepop(&queue);
+		return (ft_treebfirst(tmp, f, queue, cmp));
 	}
-	*val = (ret * n);
-	return (str);
+	return (NULL);
 }

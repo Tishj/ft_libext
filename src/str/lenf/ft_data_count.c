@@ -6,13 +6,14 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 11:51:41 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:21:47 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:26 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
-size_t	ft_data_count_excl(t_data *data, va_list list, char *str)
+size_t	ft_data_count_excl(t_lenf *data, va_list list, char *str)
 {
 	static const char	whitespaces[] = "\t\n\v\f\r ";
 	char				rstart;
@@ -37,7 +38,7 @@ size_t	ft_data_count_excl(t_data *data, va_list list, char *str)
 	return (2);
 }
 
-size_t	ft_data_count_incl(t_data *data, va_list list, char *str)
+size_t	ft_data_count_incl(t_lenf *data, va_list list, char *str)
 {
 	static const char	whitespaces[] = "\t\n\v\f\r ";
 	char				rstart;
@@ -60,7 +61,7 @@ size_t	ft_data_count_incl(t_data *data, va_list list, char *str)
 	return (1);
 }
 
-size_t	ft_data_count(t_data *data, va_list list, char *str)
+size_t	ft_data_count(t_lenf *data, va_list list, char *str)
 {
 	size_t	i;
 

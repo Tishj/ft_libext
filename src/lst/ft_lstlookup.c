@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_lstlookup.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/30 20:11:50 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/30 20:17:39 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+t_list	*ft_lstlookup(t_list *root, char *str)
 {
-	int		ret;
-	int		n;
-
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	while (root)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		if (ft_strcmp((char *)root->item, str) == 0)
+			return (root);
+		root = root->next;
 	}
-	*val = (ret * n);
-	return (str);
+	return (root);
 }

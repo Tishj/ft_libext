@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/21 11:39:56 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:54:16 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/02/28 11:48:48 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 void	ft_quepush(t_list **list, void *item)
 {
-	if (!list || !*list)
+	t_list	*new;
+
+	if (!list)
 		return ;
-	ft_lstsuffix(list, item);
+	new = ft_lstnew(item);
+	if (!new)
+		return ;
+	if (!*list)
+		return (ft_lstprefix(list, new));
+	ft_lstsuffix(list, new);
 }

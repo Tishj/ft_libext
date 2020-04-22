@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_lstconvstr2.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/30 17:18:14 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/30 17:21:52 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+char	**ft_lstconvstr2(t_list *root)
 {
-	int		ret;
-	int		n;
+	size_t	len;
+	char	**str2;
+	size_t	i;
+	t_list	*iter;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	i = 0;
+	if (!root)
+		return (NULL);
+	iter = root;
+	len = ft_lstlen(root);
+	str2 = malloc(sizeof(char *) * (len + 1));
+	if (!str2)
+		return (NULL);
+	while (iter)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		str2[i] = ft_strdup((char *)root->item);
+		i++;
+		iter = iter->next;
 	}
-	*val = (ret * n);
-	return (str);
+	str2[i] = 0;
+	return (str2);
 }

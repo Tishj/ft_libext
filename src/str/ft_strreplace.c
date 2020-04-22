@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   ft_strreplace.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/30 12:22:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/28 11:20:27 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/30 11:27:50 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_strdup(char *str)
+/*
+**	This function returns a heap allocated string and also frees 'org'
+*/
+char	*ft_strreplace(char *org, char *before, char *after)
 {
-	size_t	len;
-	size_t	i;
 	char	*new;
+	char	*tmp;
+	char	*check;
 
-	i = 0;
-	if (!str)
+	check = ft_strstr(org, before);
+	if ((!org || !check) || (!before || !after))
 		return (NULL);
-	len = ft_strlen(str);
-	new = ft_calloc(sizeof(char), (len + 1));
-	if (!new)
-		return (NULL);
-	while (i < len)
-	{
-		new[i] = str[i];
-		if (!new)
-			return (NULL);
-		i++;
-	}
-	new[i] = 0;
+	new = malloc(sizeof(char) *
+		(ft_strlen(org) + ft_strlen(after) - ft_strlen(before)));
+	tmp = org + ft_strncpy(new, org, check - org);
+	tmp += ft_strlen(before);
+	(void)ft_strcat(new, after);
+	(void)ft_strcat(new, tmp);
+	free(org);
 	return (new);
 }

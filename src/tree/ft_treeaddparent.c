@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_treeaddparent.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/28 10:28:08 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/28 11:58:10 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+void	ft_treeaddparent(t_tree **root, t_tree *add)
 {
-	int		ret;
-	int		n;
-
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
-	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
-	}
-	*val = (ret * n);
-	return (str);
+	if (!root || !add)
+		return ;
+	if (!add->left)
+		add->left = *root;
+	else if (!add->right)
+		add->right = *root;
+	else
+		return ;
+	*root = add;
 }

@@ -6,13 +6,14 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/15 12:30:22 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/15 15:40:37 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
-size_t	ft_len(t_data *data, char *str)
+size_t	ft_len(t_lenf *data, char *str)
 {
 	size_t	len;
 	size_t	i;

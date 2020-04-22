@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/02/27 00:18:09 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/30 20:20:49 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ ifdef BUFFER_SIZE
 endif
 
 STR_DIR = str/
+PRINTF_DIR = printf/
 CHR_DIR = chr/
 MEM_DIR = mem/
 NUM_DIR = num/
@@ -31,6 +32,7 @@ LST_DIR = lst/
 QUE_DIR = que/
 STK_DIR = stk/
 FD_DIR = fd/
+TREE_DIR = tree/
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -46,6 +48,14 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrsprint.c \
 		ft_chrswapc.c \
 		ft_chrmatchw.c) \
+		$(addprefix $(PRINTF_DIR), ft_printf.c) \
+		$(addprefix $(TREE_DIR), ft_treeaddparent.c \
+		ft_treeaddchild.c \
+		ft_treeaddright.c \
+		ft_treeaddleft.c \
+		ft_treenew.c \
+		ft_treeprint.c \
+		ft_treebfirst.c) \
 		$(addprefix $(FD_DIR), ft_fdchar.c \
 		ft_fdstrc.c) \
 		$(addprefix $(LST_DIR), ft_lstindex.c \
@@ -58,6 +68,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_lstprev.c \
 		ft_lstptr.c \
 		ft_lstrev.c \
+		ft_lstconvstr2.c \
 		ft_lstsuffix.c \
 		ft_lstdel.c \
 		ft_lstcmp.c \
@@ -78,6 +89,10 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_plstprefix.c \
 		ft_lstswap.c) \
 		$(addprefix $(NUM_DIR), ft_numprint.c \
+		ft_numlenu_base.c \
+		ft_numstru_base.c \
+		ft_numlen_base.c \
+		ft_numstr_base.c \
 		ft_numprintbase.c \
 		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
@@ -100,6 +115,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_data_limit.c \
 		ft_data_parse.c \
 		ft_strlenf.c) \
+		ft_strtrunc.c \
+		ft_strchr.c \
 		ft_strsep.c \
 		ft_strtok.c \
 		ft_str2len.c \
@@ -109,6 +126,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_straddn.c \
 		ft_straddr.c \
 		ft_strcat.c \
+		ft_strreplace.c \
+		ft_str2convlst.c \
 		ft_strcatc.c \
 		ft_strcmp.c \
 		ft_strccmp.c \

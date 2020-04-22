@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 02:17:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 16:46:40 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:03:06 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ char	*ft_strchaindelimc(char **str, char delim)
 	while (i < len)
 	{
 		new = ft_stradd(new, str[i]);
+		if (!new)
+			return (NULL);
 		new = ft_straddc(new, delim);
+		if (!new)
+			return (NULL);
 		i++;
 	}
 	new = ft_stradd(new, str[i]);

@@ -6,13 +6,26 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 22:07:51 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:05:57 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	**ft_str2dup(char **str)
+static char	**ft_cleanup(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+char		**ft_str2dup(char **str)
 {
 	size_t	len;
 	size_t	i;
@@ -26,6 +39,8 @@ char	**ft_str2dup(char **str)
 	while (i < len)
 	{
 		new[i] = ft_strdup(str[i]);
+		if (!new[i])
+			return (ft_cleanup(new));
 		i++;
 	}
 	new[i] = 0;

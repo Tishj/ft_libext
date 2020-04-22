@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   numstr_test.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/17 23:53:31 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/18 00:56:28 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "ft_printf.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+int		main(void)
 {
-	int		ret;
-	int		n;
+	char	*str;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
-	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
-	}
-	*val = (ret * n);
-	return (str);
+	str = ft_numstr_base(0, 10);
+	ft_strprint(str);
+	printf("%d\n", ft_printf("%p\n", str));
+	return (0);
 }

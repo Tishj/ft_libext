@@ -1,7 +1,9 @@
 {
 	"files.associations": {
 		"libext.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"printf.h": "c",
+		"ft_printf.h": "c"
 	},
 	"search.usePCRE2": true
 }

@@ -6,13 +6,14 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 10:22:16 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/15 15:39:36 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:42 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
-size_t	ft_data_base(t_data *data, char *str)
+size_t	ft_data_base(t_lenf *data, char *str)
 {
 	if (ft_chrmatchc(*str, '-'))
 		data->mods.base += 1;
@@ -21,7 +22,7 @@ size_t	ft_data_base(t_data *data, char *str)
 	return (1);
 }
 
-size_t	ft_data_parse(t_data *data, va_list list, char *str)
+size_t	ft_data_parse(t_lenf *data, va_list list, char *str)
 {
 	size_t	i;
 

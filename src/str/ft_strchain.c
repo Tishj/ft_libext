@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 02:17:09 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/12 02:32:56 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:02:43 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strchain(char **str)
 	while (str[i])
 	{
 		new = ft_stradd(new, str[i]);
+		if (!new)
+			return (NULL);
 		i++;
 	}
 	return (new);

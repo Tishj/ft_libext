@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_numstru_base.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/17 23:30:20 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/18 00:20:45 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+char	*ft_numstru_base(unsigned int num, char *base)
 {
-	int		ret;
-	int		n;
+	char			*str;
+	size_t			size;
+	size_t			numbase;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	numbase = ft_strlen(base);
+	if (numbase < 2)
+		return (NULL);
+	size = ft_numlenu_base(num, numbase);
+	str = ft_calloc(sizeof(char), size + 1);
+	if (!str)
+		return (NULL);
+	str[size] = '\0';
+	while (size > 0)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		str[size - 1] = base[num % numbase];
+		num /= numbase;
+		size--;
 	}
-	*val = (ret * n);
 	return (str);
 }

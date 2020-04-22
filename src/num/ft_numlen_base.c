@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_numlen_base.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/17 23:32:58 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/17 23:39:44 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+size_t	ft_numlen_base(int num, int base)
 {
-	int		ret;
-	int		n;
+	size_t			i;
+	unsigned int	nb;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	i = (num <= 0) ? 1 : 0;
+	nb = (num < 0) ? num * -1 : num;
+	while (nb > 0)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		nb /= base;
+		i++;
 	}
-	*val = (ret * n);
-	return (str);
+	return (i);
 }

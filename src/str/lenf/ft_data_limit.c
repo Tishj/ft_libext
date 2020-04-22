@@ -6,13 +6,14 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 11:51:01 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:21:23 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:40 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
-size_t	ft_data_limit(t_data *data, va_list list, char *str)
+size_t	ft_data_limit(t_lenf *data, va_list list, char *str)
 {
 	static const char	whitespaces[] = "\t\n\v\f\r ";
 	char				rstart;

@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_treenew.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/28 10:33:08 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/28 10:34:23 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+t_tree	*ft_treenew(void *item)
 {
-	int		ret;
-	int		n;
+	t_tree	*new;
 
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
-	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
-	}
-	*val = (ret * n);
-	return (str);
+	new = malloc(sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->item = item;
+	new->left = NULL;
+	new->right = NULL;
+	return (new);
 }

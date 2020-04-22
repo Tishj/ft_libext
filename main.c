@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 16:43:02 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/28 12:01:42 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 	return (0);
 } */
 
-int		main(int argc, char **input)
+/* int		main(int argc, char **input)
 {
 	int		fd;
 	char	*str;
@@ -94,7 +94,63 @@ int		main(int argc, char **input)
 		i++;
 	}
 	return (0);
+} */
+
+/* int		main(void)
+{
+	char	*str;
+	char	*comma;
+
+	str = ft_strdup("lol dit is \"een\"string");
+	ft_strprint(str);
+	comma = ft_strchr(str, '"');
+	while (comma)
+	{
+		ft_strtrunc(str + ft_strclen(str, '"'), 1);
+		comma = ft_strchr(comma, '"');
+	}
+	ft_strprint(str);
+} */
+
+int		main(void)
+{
+	char	*path;
+	char	before[] = "desktok";
+	char	after[] = "codam";
+
+	path = ft_strdup("/mnt/c/users/thijs/desktop/codam/libext");
+	ft_strprint(path);
+	path = ft_strreplace(path, before, after);
+	ft_strprint(path);
+	return (0);
 }
+
+/* int		main(void)
+{
+	t_tree	*root;
+	t_tree	*tmp;
+	char	num;
+	size_t	i;
+
+	i = 1;
+	root = NULL;
+	num = 'a';
+	ft_treeaddparent(&root, ft_treenew("root"));
+	tmp = root;
+	while (num + (char)i <= 'z')
+	{
+		srand(i);
+		ft_treeaddchild(tmp, ft_treenew(ft_strgenc(num + (char)i, 1)));
+		if ((rand() % 10) % i == 0 && tmp->left)
+			tmp = tmp->left;
+		else if ((rand() % 10) % i == 0 && tmp->right)
+			tmp = tmp->right;
+		i++;
+	}
+	ft_treeprint(root, &ft_strprint);
+	ft_treebfirst(root, &ft_strcmp, (t_list *)0, "f");
+	return (1);
+} */
 
 /* int		main(void)
 {

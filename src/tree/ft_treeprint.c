@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnump.c                                       :+:    :+:            */
+/*   ft_treeprint.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 19:42:37 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 23:27:35 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/28 11:59:11 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/02/28 12:22:59 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-/*
-**	Atoi, putting the value in VAL,
-**	returning a pointer to the remainder of the string
-*/
-
-char	*ft_strnump(char *str, int *val)
+void	ft_treeprint(t_tree *root, void (*print)(void *item))
 {
-	int		ret;
-	int		n;
-
-	ret = 0;
-	str += ft_strskipw(str);
-	n = (*str == '-') ? -1 : 1;
-	str = (*str == '-' || *str == '+') ? str + 1 : str;
-	while (ft_chrmatchr(*str, '0', '9'))
+	if (!root)
+		return ;
+	print(root->item);
+	if (root->left)
 	{
-		ret *= 10 + (*str - '0');
-		str++;
-		*val = ret;
+		printf("left child:\n");
+		ft_treeprint(root->left, print);
 	}
-	*val = (ret * n);
-	return (str);
+	if (root->right)
+	{
+		printf("right child:\n");
+		ft_treeprint(root->right, print);
+	}
 }

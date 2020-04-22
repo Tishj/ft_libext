@@ -6,17 +6,18 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 10:18:17 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/21 11:18:27 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:41:52 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "lenf.h"
 
 size_t	ft_strlenf(char *str, char *args, ...)
 {
 	size_t	i;
 	va_list	list;
-	t_data	data;
+	t_lenf	data;
 
 	va_start(list, args);
 	ft_data_init(&data);

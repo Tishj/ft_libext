@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/20 22:06:47 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/17 21:08:08 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_strsdup(char *str, char *set)
 	while (i < len)
 	{
 		new[i] = str[i];
+		if (!new)
+			return (NULL);
 		i++;
 	}
 	new[i] = 0;

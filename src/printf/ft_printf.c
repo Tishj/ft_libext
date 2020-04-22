@@ -5,15 +5,29 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/24 19:50:34 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/18 01:12:07 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/24 19:50:34 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/04/23 00:41:29 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include <stdio.h>
 #include "ft_printf.h"
 
 #define ERROR -1
+
+const char	*convnames[] = {
+	[EMPTY] = "EMPTY",
+	[STR] = "STR",
+	[CHR] = "CHR",
+	[DIG] = "DIG",
+	[INT] = "INT",
+	[HEXU] = "HEXU",
+	[HEXL] = "HEXL",
+	[PTR] = "PTR",
+	[UINT] = "UINT",
+	[OCT] = "OCT",
+	};
 
 void	ft_parseflag(t_pfdata *data, t_pfconv *conv)
 {
@@ -36,24 +50,24 @@ void	ft_parseflag(t_pfdata *data, t_pfconv *conv)
 
 char	ft_conv_get(t_pfdata *data)
 {
-	ft_strprint(data->arg);
-	if (!ft_strcmp(data->arg, "s"))
+//	ft_strprint(data->arg);
+	if (!ft_strncmp(data->arg, "s", 1))
 		return (STR);
-	else if (!ft_strcmp(data->arg, "c"))
+	else if (!ft_strncmp(data->arg, "c", 1))
 		return (CHR);
-	else if (!ft_strcmp(data->arg, "d"))
+	else if (!ft_strncmp(data->arg, "d", 1))
 		return (DIG);
-	else if (!ft_strcmp(data->arg, "i"))
+	else if (!ft_strncmp(data->arg, "i", 1))
 		return (INT);
-	else if (!ft_strcmp(data->arg, "o"))
+	else if (!ft_strncmp(data->arg, "o", 1))
 		return (OCT);
-	else if (!ft_strcmp(data->arg, "u"))
+	else if (!ft_strncmp(data->arg, "u", 1))
 		return (UINT);
-	else if (!ft_strcmp(data->arg, "x"))
+	else if (!ft_strncmp(data->arg, "x", 1))
 		return (HEXL);
-	else if (!ft_strcmp(data->arg, "X"))
+	else if (!ft_strncmp(data->arg, "X", 1))
 		return (HEXU);
-	else if (!ft_strcmp(data->arg, "p"))
+	else if (!ft_strncmp(data->arg, "p", 1))
 		return (PTR);
 	else
 		return (EMPTY);
@@ -61,8 +75,11 @@ char	ft_conv_get(t_pfdata *data)
 
 int		ft_conv_str(t_pfdata *data, t_pfconv *conv)
 {
-	conv->string = ft_strdup(va_arg(data->list, char*));
+	conv->string = va_arg(data->list, char *);
+	if (!conv->string)
+		conv->string = "(NULL)";
 	data->str = ft_stradd(data->str, conv->string);
+//	printf("DATASTR: %s\n", data->str);
 	if (data->str)
 		return (1);
 	return (ERROR);
@@ -81,9 +98,10 @@ int		ft_conv_chr(t_pfdata *data, t_pfconv *conv)
 
 int		ft_conv_di(t_pfdata *data, t_pfconv *conv)
 {
-	conv->string = ft_numstr_base((char)va_arg(data->list, int), 1);
+	conv->string = ft_numstr_base((char)va_arg(data->list, int), 10);
 	if (!conv->string)
 		return (ERROR);
+	printf("STR: %s\n", conv->string);
 	data->str = ft_stradd(data->str, conv->string);
 	if (data->str)
 		return (ft_strlen(conv->string));
@@ -136,9 +154,10 @@ int		ft_conv_uint(t_pfdata *data, t_pfconv *conv)
 
 int		ft_conv_ptr(t_pfdata *data, t_pfconv *conv)
 {
-	conv->string = ft_numstru_base(va_arg(data->list, unsigned long), "0123456789abcdef");
+	conv->string = ft_numstrul_base(va_arg(data->list, unsigned long), "0123456789abcdef");
 	if (!conv->string)
 		return (ERROR);
+	data->str = ft_stradd(data->str, "0x");
 	data->str = ft_stradd(data->str, conv->string);
 	if (data->str)
 		return (ft_strlen(conv->string));
@@ -147,8 +166,8 @@ int		ft_conv_ptr(t_pfdata *data, t_pfconv *conv)
 
 int		ft_convert(t_pfdata *data, t_pfconv *conv)
 {
-	t_convf	funct;
-	t_convf	conversions[] = {
+	t_convf			funct;
+	static t_convf	conversions[] = {
 	[STR] = ft_conv_str,
 	[CHR] = ft_conv_chr,
 	[DIG] = ft_conv_di,
@@ -160,7 +179,7 @@ int		ft_convert(t_pfdata *data, t_pfconv *conv)
 	[PTR] = ft_conv_ptr
 	};
 
-	printf("CONVERSION: %d\n", conv->conversion);
+//	printf("CONVERSION: %s\n", convnames[(int)conv->conversion]);
 	funct = conversions[(int)conv->conversion];
 	return (funct(data, conv));
 }
@@ -172,19 +191,18 @@ int		ft_parseconv(t_pfdata *data)
 	conv = (t_pfconv){0};
 	while (*data->arg && !ft_chrmatchs(*data->arg, CONVERSION))
 	{
-		printf("ARG[i] = %c\n", *data->arg);
+		printf("FLAGS = %c\n", *data->arg);
 		if (ft_chrmatchs(*data->arg, FLAG))
 			ft_parseflag(data, &conv);
 		else
 			return (ERROR);
 		data->arg++;
 	}
-	ft_strprint(data->arg);
 	if (ft_chrmatchs(*data->arg, CONVERSION))
 	{
-		printf("yes\n");
 		conv.conversion = ft_conv_get(data);
-		printf("conv: %c\n", conv.conversion + '0');
+		printf("CONV: %s\n", convnames[(int)conv.conversion]);
+		data->arg++;
 	}
 	return ((conv.conversion) ? ft_convert(data, &conv) : ERROR);
 }
@@ -195,7 +213,7 @@ int		ft_printf(char *arguments, ...)
 
 	data = (t_pfdata){0};
 	va_start(data.list, arguments);
-	ft_strprint(arguments);
+//	printf("argstring: %s\n", arguments);
 	data.arg = arguments;
 	while (*data.arg)
 	{
@@ -205,12 +223,15 @@ int		ft_printf(char *arguments, ...)
 			data.ret = ft_parseconv(&data);
 		}
 		else
+		{
 			data.str = ft_strnadd(data.str, data.arg,
 						ft_strclen(data.arg, '%'));
+			data.arg += ft_strclen(data.arg, '%');
+		}
 		if (data.ret == ERROR)
 			break ;
 	}
 	va_end(data.list);
-	ft_strprint(data.str);
-	return ((data.ret == -1) ? -1 : (int)ft_strlen(data.str));
+	write(1, data.str, ft_strlen(data.str));
+	return ((data.ret == ERROR) ? ERROR : (int)ft_strlen(data.str));
 }

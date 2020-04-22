@@ -5,12 +5,13 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 00:48:44 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/28 12:01:42 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 00:48:44 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/04/23 00:33:23 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
+#include "ft_printf.h"
 #include <string.h>
 
 /* int		main(void)
@@ -27,6 +28,13 @@
 		printf("(null)\n");
 	return (1);
 } */
+
+int		main(void)
+{
+	printf("REAL: %p\n", (void *)-1);
+	ft_printf("MINE: %p\n", (void *)-1);
+	return (0);
+}
 
 /* int		main(void)
 {
@@ -112,7 +120,7 @@
 	ft_strprint(str);
 } */
 
-int		main(void)
+/* int		main(void)
 {
 	char	*path;
 	char	before[] = "desktok";
@@ -123,7 +131,7 @@ int		main(void)
 	path = ft_strreplace(path, before, after);
 	ft_strprint(path);
 	return (0);
-}
+} */
 
 /* int		main(void)
 {

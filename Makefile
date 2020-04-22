@@ -5,8 +5,8 @@
 #                                                      +:+                     #
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/02/11 23:29:26 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/30 20:20:49 by tbruinem      ########   odam.nl          #
+#    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
+#    Updated: 2020/04/23 00:38:44 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ QUE_DIR = que/
 STK_DIR = stk/
 FD_DIR = fd/
 TREE_DIR = tree/
+
+DIRS = str/lenf printf chr mem num lst que stk fd tree
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -91,6 +93,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		$(addprefix $(NUM_DIR), ft_numprint.c \
 		ft_numlenu_base.c \
 		ft_numstru_base.c \
+		ft_numlenul_base.c \
+		ft_numstrul_base.c \
 		ft_numlen_base.c \
 		ft_numstr_base.c \
 		ft_numprintbase.c \
@@ -229,22 +233,29 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strwlen.c)
 
 OBJ =	$(SRC:%.c=%.o)
+OBJ_DIRS := $(addprefix $(OBJ_DIR), $(DIRS))
 
-all: $(NAME)
+all: $(OBJ_DIRS) $(NAME)
 
-test:
-	@gcc $(FLAGS) -I $(INCL_DIR) main.c $(addprefix $(SRC_DIR), $(SRC))
+$(OBJ_DIRS):
+	mkdir -p $@
 
-%.o: %.c
-	gcc $(FLAGS) $< -I $(INCL_DIR) -c -o $(OBJ_DIR)$(basename $(notdir $<)).o
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	gcc $(FLAGS) $< -I $(INCL_DIR) -c -o $@
 
-$(NAME): $(addprefix $(SRC_DIR), $(OBJ))
-	ar -rcs $(NAME) $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
+$(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
+	ar -rcs $(NAME) $(addprefix $(OBJ_DIR), $(OBJ))
 
 clean:
 	rm -rf $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
 
+test: $(NAME)
+	gcc main.c -I $(INCL_DIR) -I ./src/printf -L . -lext
+
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf a.out
 
 re: fclean all
+
+.PHONY: test

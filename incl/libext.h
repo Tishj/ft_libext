@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 23:31:23 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/30 20:19:49 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/04/23 00:39:55 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,8 @@ int			ft_chrsprint(char c, char *set);
 char		*ft_numstru_base(unsigned int num, char *base);
 size_t		ft_numlenu_base(unsigned int num, int base);
 char		*ft_numstr_base(int num, int base);
+char		*ft_numstrul_base(unsigned long num, char *base);
+size_t		ft_numlenul_base(unsigned long num, int base);
 size_t		ft_numlen_base(int num, int base);
 void		ft_strshift(char *str, long long shift);
 void		ft_numprint(int nb);

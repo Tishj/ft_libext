@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/04/23 00:38:44 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/04/23 12:59:05 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ endif
 ifdef BUFFER_SIZE
 	FLAGS += -D BUFFER_SIZE=$(BUFFER_SIZE)
 endif
+
+IN := ""
 
 STR_DIR = str/
 PRINTF_DIR = printf/
@@ -100,6 +102,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_numprintbase.c \
 		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
+		ft_memcpy.c \
 		ft_memset.c) \
 		$(addprefix $(STK_DIR), ft_stkpush.c \
 		ft_stkpop.c \
@@ -243,14 +246,14 @@ $(OBJ_DIRS):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	gcc $(FLAGS) $< -I $(INCL_DIR) -c -o $@
 
-$(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
+$(NAME): $(addprefix $(OBJ_DIR), $(OBJ)) $(SRC_DIR)/printf/ft_printf.h
 	ar -rcs $(NAME) $(addprefix $(OBJ_DIR), $(OBJ))
 
 clean:
 	rm -rf $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
 
 test: $(NAME)
-	gcc main.c -I $(INCL_DIR) -I ./src/printf -L . -lext
+	gcc main.c -D IN='$(IN)' -I ./ -L . -lftprintf -I $(INCL_DIR) -I ./src/printf -L . -lext
 
 fclean: clean
 	rm -rf $(NAME)

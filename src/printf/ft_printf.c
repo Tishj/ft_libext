@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   printf.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 19:50:34 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 00:41:29 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/23 12:01:15 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ const char	*convnames[] = {
 	[OCT] = "OCT",
 	};
 
-void	ft_parseflag(t_pfdata *data, t_pfconv *conv)
+void	parseflag(t_pfdata *data, t_pfconv *conv)
 {
-	if (ft_chrmatchc(*data->arg, '0'))
+	if (ft_chrmatchc(*data->arg, '-'))
+		conv->padtype = BACK;
+	if (!conv->precision && ft_chrmatchc(*data->arg, '0'))
 		conv->padding = '0';
 	else if (ft_chrmatchr(*data->arg, '0', '9'))
+	{
+//		printf("before: min:%d | max: %d\n", conv->minwidth, conv->maxwidth);
 		data->arg = (conv->precision) ?
 		ft_strnump(data->arg, &conv->maxwidth) - 1 :
 		ft_strnump(data->arg, &conv->minwidth) - 1;
+//		printf("after: min:%d | max: %d\n", conv->minwidth, conv->maxwidth);
+	}
 	else if (ft_chrmatchc(*data->arg, '.'))
 		conv->precision = 1;
 	else if (ft_chrmatchc(*data->arg, '*'))
@@ -48,9 +54,20 @@ void	ft_parseflag(t_pfdata *data, t_pfconv *conv)
 	}
 }
 
-char	ft_conv_get(t_pfdata *data)
+void	debug(t_pfconv *conv)
 {
-//	ft_strprint(data->arg);
+	printf("---CONVERSIONS---:\n");
+	printf("MINWIDTH: %d\n", conv->minwidth);
+	printf("MAXWIDTH: %d\n", conv->maxwidth);
+	printf("TYPE: %s\n", convnames[(int)conv->conversion]);
+	printf("PRECISION: %d\n", conv->precision);
+	printf("PADDING: %c\n", conv->padding);
+	printf("PADTYPE: %d\n", (int)conv->padtype);
+}
+
+char	conv_get(t_pfdata *data)
+{
+//	strprint(data->arg);
 	if (!ft_strncmp(data->arg, "s", 1))
 		return (STR);
 	else if (!ft_strncmp(data->arg, "c", 1))
@@ -73,19 +90,32 @@ char	ft_conv_get(t_pfdata *data)
 		return (EMPTY);
 }
 
-int		ft_conv_str(t_pfdata *data, t_pfconv *conv)
+char	*mod_str(char *str, t_pfconv *conv)
 {
-	conv->string = va_arg(data->list, char *);
+	size_t	len;
+	char	*new;
+
+	if (!str)
+		return (mod_str("(null)", conv));
+	len = (conv->precision) ? (int)ft_strnlen(str, conv->maxwidth) : (int)ft_strlen(str);
+	new = ft_strgenc(conv->padding, (conv->minwidth > (int)len) ? conv->minwidth : (int)len);
+	ft_memcpy((conv->minwidth > (int)len && conv->padtype == FRONT) ? new + (conv->minwidth - len) : new, str, len);
+	return (new);
+}
+
+int		conv_str(t_pfdata *data, t_pfconv *conv)
+{
+	conv->string = mod_str(va_arg(data->list, char *), conv);
 	if (!conv->string)
-		conv->string = "(NULL)";
+		conv->string = "(null)";
 	data->str = ft_stradd(data->str, conv->string);
-//	printf("DATASTR: %s\n", data->str);
+	free(conv->string);
 	if (data->str)
 		return (1);
 	return (ERROR);
 }
 
-int		ft_conv_chr(t_pfdata *data, t_pfconv *conv)
+int		conv_chr(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_strgenc((char)va_arg(data->list, int), 1);
 	if (!conv->string)
@@ -96,7 +126,7 @@ int		ft_conv_chr(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_di(t_pfdata *data, t_pfconv *conv)
+int		conv_di(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstr_base((char)va_arg(data->list, int), 10);
 	if (!conv->string)
@@ -108,7 +138,7 @@ int		ft_conv_di(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_oct(t_pfdata *data, t_pfconv *conv)
+int		conv_oct(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstru_base(va_arg(data->list, unsigned int), "01234567");
 	if (!conv->string)
@@ -119,7 +149,7 @@ int		ft_conv_oct(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_hexl(t_pfdata *data, t_pfconv *conv)
+int		conv_hexl(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstru_base(va_arg(data->list, unsigned int), "0123456789abcdef");
 	if (!conv->string)
@@ -130,7 +160,7 @@ int		ft_conv_hexl(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_hexu(t_pfdata *data, t_pfconv *conv)
+int		conv_hexu(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstru_base(va_arg(data->list, unsigned int), "0123456789ABCDEF");
 	if (!conv->string)
@@ -141,7 +171,7 @@ int		ft_conv_hexu(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_uint(t_pfdata *data, t_pfconv *conv)
+int		conv_uint(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstru_base(va_arg(data->list, unsigned int), "0123456789");
 	if (!conv->string)
@@ -152,7 +182,7 @@ int		ft_conv_uint(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_conv_ptr(t_pfdata *data, t_pfconv *conv)
+int		conv_ptr(t_pfdata *data, t_pfconv *conv)
 {
 	conv->string = ft_numstrul_base(va_arg(data->list, unsigned long), "0123456789abcdef");
 	if (!conv->string)
@@ -164,19 +194,19 @@ int		ft_conv_ptr(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
-int		ft_convert(t_pfdata *data, t_pfconv *conv)
+int		convert(t_pfdata *data, t_pfconv *conv)
 {
 	t_convf			funct;
 	static t_convf	conversions[] = {
-	[STR] = ft_conv_str,
-	[CHR] = ft_conv_chr,
-	[DIG] = ft_conv_di,
-	[INT] = ft_conv_di,
-	[OCT] = ft_conv_oct,
-	[UINT] = ft_conv_uint,
-	[HEXL] = ft_conv_hexl,
-	[HEXU] = ft_conv_hexu,
-	[PTR] = ft_conv_ptr
+	[STR] = conv_str,
+	[CHR] = conv_chr,
+	[DIG] = conv_di,
+	[INT] = conv_di,
+	[OCT] = conv_oct,
+	[UINT] = conv_uint,
+	[HEXL] = conv_hexl,
+	[HEXU] = conv_hexu,
+	[PTR] = conv_ptr
 	};
 
 //	printf("CONVERSION: %s\n", convnames[(int)conv->conversion]);
@@ -184,27 +214,28 @@ int		ft_convert(t_pfdata *data, t_pfconv *conv)
 	return (funct(data, conv));
 }
 
-int		ft_parseconv(t_pfdata *data)
+int		parseconv(t_pfdata *data)
 {
 	t_pfconv	conv;
 
 	conv = (t_pfconv){0};
+	conv.padding = ' ';
 	while (*data->arg && !ft_chrmatchs(*data->arg, CONVERSION))
 	{
-		printf("FLAGS = %c\n", *data->arg);
+//		printf("data->arg: %c\n", *data->arg);
 		if (ft_chrmatchs(*data->arg, FLAG))
-			ft_parseflag(data, &conv);
+			parseflag(data, &conv);
 		else
 			return (ERROR);
 		data->arg++;
 	}
 	if (ft_chrmatchs(*data->arg, CONVERSION))
 	{
-		conv.conversion = ft_conv_get(data);
-		printf("CONV: %s\n", convnames[(int)conv.conversion]);
+		conv.conversion = conv_get(data);
 		data->arg++;
 	}
-	return ((conv.conversion) ? ft_convert(data, &conv) : ERROR);
+//	debug(&conv);
+	return ((conv.conversion) ? convert(data, &conv) : ERROR);
 }
 
 int		ft_printf(char *arguments, ...)
@@ -220,7 +251,7 @@ int		ft_printf(char *arguments, ...)
 		if (*data.arg == '%')
 		{
 			data.arg++;
-			data.ret = ft_parseconv(&data);
+			data.ret = parseconv(&data);
 		}
 		else
 		{

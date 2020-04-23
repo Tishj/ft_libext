@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 00:39:55 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/23 12:59:36 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char			ft_chrmatchw(char c);
 char		ft_chrmatchr(char c, char rstart, char rend);
 
 void		*ft_calloc(size_t size, size_t len);
+void		*ft_memcpy(void *dst, void *src, size_t len);
 void		ft_memset(void *mem, size_t len, char c);
 
 void		ft_str2del(char **str);

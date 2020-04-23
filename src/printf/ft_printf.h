@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/22 23:28:56 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/22 23:29:13 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/23 12:49:13 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # define CONVERSION "scdiouxXp%"
-# define FLAG "0123456789.*"
+# define FLAG "-0123456789.*"
 
 typedef struct	s_pfdata
 {
@@ -28,6 +28,7 @@ typedef struct	s_pfdata
 typedef struct	s_pfconv
 {
 	char		conversion;
+	char		padtype;
 	size_t		index;
 	char		padding;
 	int			minwidth;
@@ -35,6 +36,13 @@ typedef struct	s_pfconv
 	int			precision;
 	char		*string;
 }				t_pfconv;
+
+enum			e_padtype
+{
+	FRONT,
+	BACK,
+};
+
 enum			e_conversions
 {
 	EMPTY = 0,

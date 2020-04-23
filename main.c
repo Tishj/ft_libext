@@ -6,13 +6,16 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 00:33:23 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/23 12:00:37 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 #include "ft_printf.h"
+#include "printf.h"
 #include <string.h>
+
+
 
 /* int		main(void)
 {
@@ -31,8 +34,8 @@
 
 int		main(void)
 {
-	printf("REAL: %p\n", (void *)-1);
-	ft_printf("MINE: %p\n", (void *)-1);
+	basic_printf("REAL: %d\n", basic_printf(IN));
+	basic_printf("MINE: %d\n", ft_printf(IN));
 	return (0);
 }
 

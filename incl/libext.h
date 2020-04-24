@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 12:59:36 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/24 15:39:16 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,10 +204,10 @@ int			ft_chrprintfds(char c, int fd, char *set);
 int			ft_chrprints(char c, char *set);
 int			ft_chrsprint(char c, char *set);
 
-char		*ft_numstru_base(unsigned int num, char *base);
+char		*ft_numstru_base(unsigned int num, char *base, size_t minimum);
 size_t		ft_numlenu_base(unsigned int num, int base);
-char		*ft_numstr_base(int num, int base);
-char		*ft_numstrul_base(unsigned long num, char *base);
+char		*ft_numstr_base(int num, int base, size_t minimum);
+char		*ft_numstrul_base(unsigned long num, char *base, size_t minimum);
 size_t		ft_numlenul_base(unsigned long num, int base);
 size_t		ft_numlen_base(int num, int base);
 void		ft_strshift(char *str, long long shift);

@@ -6,13 +6,13 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/17 23:30:20 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 00:35:02 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/24 15:39:01 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libext.h"
 
-char	*ft_numstrul_base(unsigned long num, char *base)
+char	*ft_numstrul_base(unsigned long num, char *base, size_t minimum)
 {
 	char			*str;
 	size_t			size;
@@ -22,6 +22,7 @@ char	*ft_numstrul_base(unsigned long num, char *base)
 	if (numbase < 2)
 		return (NULL);
 	size = ft_numlenul_base(num, numbase);
+	size = (minimum > size || (minimum == 0 && num == 0)) ? minimum : size;
 	str = ft_calloc(sizeof(char), size + 1);
 	if (!str)
 		return (NULL);

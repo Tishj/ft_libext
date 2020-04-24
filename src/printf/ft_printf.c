@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/23 17:28:13 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/24 15:41:00 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/24 16:03:53 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	parseflag(t_pfdata *data, t_pfconv *conv)
 		conv->padding = '0';
 	else if (ft_chrmatchr(*data->arg, '0', '9'))
 	{
-//		printf("before: min:%d | max: %d\n", conv->minwidth, conv->maxwidth);
 		data->arg = (conv->precision) ?
 		ft_strnump(data->arg, &conv->maxwidth) - 1 :
 		ft_strnump(data->arg, &conv->minwidth) - 1;
-//		printf("after: min:%d | max: %d\n", conv->minwidth, conv->maxwidth);
 	}
 	else if (ft_chrmatchc(*data->arg, '.'))
 		conv->precision = 1;
@@ -129,70 +127,60 @@ int		conv_chr(t_pfdata *data, t_pfconv *conv)
 	return (ERROR);
 }
 
+char	*numpadding(char *num, t_pfconv *conv, int len)
+{
+	char	*new;
+	char	*dst;
+
+	if (conv->minwidth <= len)
+		return (num);
+	new = ft_strgenc(' ', conv->minwidth);
+	if (!new)
+		return (NULL);
+	dst = new;
+	dst += (conv->padtype == FRONT) ? (conv->minwidth - len) : 0;
+	ft_memcpy(dst, num, len);
+	free(num);
+	return (new);
+}
+
 char	*mod_ulong(unsigned long num, t_pfconv *conv, char *base)
 {
-	char	*padding;
-	char	*new;
-	size_t	len;
-
 	conv->maxwidth = (conv->padding == '0') ? conv->maxwidth : 0;
 	conv->maxwidth = (conv->padding == ' ' && num == 0) ? 1 : conv->maxwidth;
-	new = ft_numstrul_base(num, base, conv->maxwidth);
-	len = ft_strlen(new);
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : new;
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, new) : conv->string;
-	padding = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : NULL;
-	conv->string = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, padding) : conv->string;
-	free(padding);
+	conv->string = ft_numstrul_base(num, base, conv->maxwidth);
+	if (!conv->string)
+		return (NULL);
+	conv->string = numpadding(conv->string, conv, ft_strlen(conv->string));
+	if (!conv->string)
+		return (NULL);
 	return (conv->string);
 }
 
 char	*mod_di(int num, t_pfconv *conv)
 {
-	char	*padding;
-	char	*new;
-	size_t	len;
-
 	conv->maxwidth = (conv->padding == '0') ? conv->maxwidth : 0;
 	conv->maxwidth = (conv->padding == ' ' && num == 0) ? 1 : conv->maxwidth;
 	conv->maxwidth += (conv->precision && num < 0) ? 1 : 0;
-	new = ft_numstr_base(num, 10, conv->maxwidth);
-	len = ft_strlen(new);
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : new;
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, new) : conv->string;
-	padding = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : NULL;
-	conv->string = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, padding) : conv->string;
-	free(padding);
+	conv->string = ft_numstr_base(num, 10, conv->maxwidth);
+	if (!conv->string)
+		return (NULL);
+	conv->string = numpadding(conv->string, conv, ft_strlen(conv->string));
+	if (!conv->string)
+		return (NULL);
 	return (conv->string);
 }
 
 char	*mod_uint(unsigned int num, t_pfconv *conv, char *base)
 {
-	char	*padding;
-	char	*new;
-	size_t	len;
-
 	conv->maxwidth = (conv->padding == '0') ? conv->maxwidth : 0;
 	conv->maxwidth = (conv->padding == ' ' && num == 0) ? 1 : conv->maxwidth;
-	new = ft_numstru_base(num, base, conv->maxwidth);
-	len = ft_strlen(new);
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : new;
-	conv->string = (conv->padtype == FRONT && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, new) : conv->string;
-	padding = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_strgenc(' ', conv->minwidth - (int)len) : NULL;
-	conv->string = (conv->padtype == BACK && conv->minwidth > (int)len) ?
-		ft_stradd(conv->string, padding) : conv->string;
-	free(padding);
+	conv->string = ft_numstru_base(num, base, conv->maxwidth);
+	if (!conv->string)
+		return (NULL);
+	conv->string = numpadding(conv->string, conv, ft_strlen(conv->string));
+	if (!conv->string)
+		return (NULL);
 	return (conv->string);
 }
 
@@ -309,7 +297,6 @@ int		parseconv(t_pfdata *data)
 	conv.maxwidth *= (conv.maxwidth < 0) ? -1 : 1;
 	if (ft_chrmatchs(*data->arg, CONVERSION))
 		conv.conversion = conv_get(data);
-//	debug(&conv);
 	return ((conv.conversion) ? convert(data, &conv) : ERROR);
 }
 

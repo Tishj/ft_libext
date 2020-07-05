@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/23 17:28:13 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 15:07:32 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 15:24:59 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ int			parseconv(t_pfdata *data)
 	conv.padding = (conv.maxwidth < 0) ? conv.padding : '0';
 	if (ft_chrmatchs(*data->arg, CONVERSION))
 		conv.conversion = conv_get(data);
-//	debug(&conv);
 	return ((conv.conversion != -1) ? convert(data, &conv) : ERROR);
 }

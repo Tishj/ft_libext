@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 12:00:37 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 13:30:05 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 int		main(void)
 {
-	basic_printf("REAL: %d\n", basic_printf(IN));
-	basic_printf("MINE: %d\n", ft_printf(IN));
+	printf("MINE: %d\n", ft_printf(IN));
+	printf("REAL: %d\n", printf(IN));
 	return (0);
 }
 

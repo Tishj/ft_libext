@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/12 21:25:53 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/17 21:43:17 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/12 21:25:53 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/07/04 23:48:32 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_numprint(int nb)
 {
 	char			c;
-	unsigned int	num; 
+	unsigned int	num;
 
 	if (nb < 0)
 	{

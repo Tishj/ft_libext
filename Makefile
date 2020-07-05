@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/04/23 12:59:05 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/07/05 15:19:26 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,6 @@ ifdef BUFFER_SIZE
 	FLAGS += -D BUFFER_SIZE=$(BUFFER_SIZE)
 endif
 
-IN := ""
-
 STR_DIR = str/
 PRINTF_DIR = printf/
 CHR_DIR = chr/
@@ -35,8 +33,6 @@ QUE_DIR = que/
 STK_DIR = stk/
 FD_DIR = fd/
 TREE_DIR = tree/
-
-DIRS = str/lenf printf chr mem num lst que stk fd tree
 
 SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrmatchs.c \
@@ -52,7 +48,15 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrsprint.c \
 		ft_chrswapc.c \
 		ft_chrmatchw.c) \
-		$(addprefix $(PRINTF_DIR), ft_printf.c) \
+		$(addprefix $(PRINTF_DIR), ft_printf.c \
+		conv_chr.c \
+		conv_di.c \
+		conv_str.c \
+		conv_uint.c \
+		conv_ulong.c \
+		debug.c \
+		numpadding.c \
+		parse.c) \
 		$(addprefix $(TREE_DIR), ft_treeaddparent.c \
 		ft_treeaddchild.c \
 		ft_treeaddright.c \
@@ -135,6 +139,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strcat.c \
 		ft_strreplace.c \
 		ft_str2convlst.c \
+		ft_str2cmpstr.c \
+		ft_str2ncmpstr.c \
 		ft_strcatc.c \
 		ft_strcmp.c \
 		ft_strccmp.c \
@@ -236,29 +242,21 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strwlen.c)
 
 OBJ =	$(SRC:%.c=%.o)
-OBJ_DIRS := $(addprefix $(OBJ_DIR), $(DIRS))
+OBJ :=	$(addprefix $(OBJ_DIR), $(OBJ))
 
-all: $(OBJ_DIRS) $(NAME)
-
-$(OBJ_DIRS):
-	mkdir -p $@
+all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	gcc $(FLAGS) $< -I $(INCL_DIR) -c -o $@
+	@mkdir -p $(@D)
+	@gcc $(FLAGS) $< -I $(INCL_DIR) -c -o $@
 
-$(NAME): $(addprefix $(OBJ_DIR), $(OBJ)) $(SRC_DIR)/printf/ft_printf.h
-	ar -rcs $(NAME) $(addprefix $(OBJ_DIR), $(OBJ))
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
 
 clean:
-	rm -rf $(addprefix $(OBJ_DIR), $(notdir $(OBJ)))
-
-test: $(NAME)
-	gcc main.c -D IN='$(IN)' -I ./ -L . -lftprintf -I $(INCL_DIR) -I ./src/printf -L . -lext
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf a.out
 
 re: fclean all
-
-.PHONY: test

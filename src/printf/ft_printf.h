@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/22 23:28:56 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/23 12:49:13 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 15:08:21 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# define CONVERSION "scdiouxXp%"
+# define CONVERSION "lscdiouxXp%"
 # define FLAG "-0123456789.*"
 
 typedef struct	s_pfdata
@@ -43,9 +43,8 @@ enum			e_padtype
 	BACK,
 };
 
-enum			e_conversions
+enum			e_conv
 {
-	EMPTY = 0,
 	STR,
 	CHR,
 	DIG,
@@ -55,9 +54,22 @@ enum			e_conversions
 	PTR,
 	UINT,
 	OCT,
+	PCT,
+	L_UINT,
+	CONV_SIZE
 };
 
 typedef int		(*t_convf)(t_pfdata *data, t_pfconv *conv);
 
 int				ft_printf(char *arguments, ...);
+int				parseconv(t_pfdata *data);
+char			*numpadding(char *num, t_pfconv *conv, int len);
+void			debug(t_pfconv *conv);
+
+int				conv_ulong(t_pfdata *data, t_pfconv *conv);
+int				conv_uint(t_pfdata *data, t_pfconv *conv);
+int				conv_chr(t_pfdata *data, t_pfconv *conv);
+int				conv_str(t_pfdata *data, t_pfconv *conv);
+int				conv_di(t_pfdata *data, t_pfconv *conv);
+
 #endif

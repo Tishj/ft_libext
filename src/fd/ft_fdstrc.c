@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 16:00:13 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/22 22:47:39 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/07/04 23:24:45 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				ft_fdstrc(int fd, char **line, char c)
 	i = 0;
 	if (!line || read(fd, (void *)0, 0) == -1)
 		return (-1);
- 	str = ft_calloc(sizeof(char), 1);
+	str = ft_calloc(sizeof(char), 1);
 	if (!str)
 		return (-1);
 	ret = ft_fdchar(fd, &str[i]);

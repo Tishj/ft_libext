@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/22 22:47:39 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/02/24 19:49:33 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/02/22 22:47:39 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/07/04 23:24:28 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int				ft_fdstr2c(int fd, char ***line, char c)
 	str = ft_calloc(sizeof(char *), 10 + 1);
 	if (!str)
 		return (0);
-	
 	ret = ft_fdstrc(fd, &str[i], c);
 	while (ret > -1)
 	{
@@ -30,7 +29,7 @@ int				ft_fdstr2c(int fd, char ***line, char c)
 			ft_str2add(str, 10);
 		i++;
 		if (ret == 0)
-			break;
+			break ;
 		ret = ft_fdstrc(fd, &str[i], c);
 	}
 	str[i] = 0;

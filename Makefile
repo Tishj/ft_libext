@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/07/05 15:54:10 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/07/05 18:32:37 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ STR_DIR = str/
 PRINTF_DIR = printf/
 CHR_DIR = chr/
 MEM_DIR = mem/
+VEC_DIR = vec/
 NUM_DIR = num/
 LST_DIR = lst/
 QUE_DIR = que/
@@ -58,6 +59,10 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		debug.c \
 		numpadding.c \
 		parse.c) \
+		$(addprefix $(VEC_DIR), vec_destroy.c \
+		vec_getref.c \
+		vec_new.c \
+		vector.c) \
 		$(addprefix $(TREE_DIR), ft_treeaddparent.c \
 		ft_treeaddchild.c \
 		ft_treeaddright.c \
@@ -107,6 +112,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_numprintbase.c \
 		ft_absnum.c) \
 		$(addprefix $(MEM_DIR), ft_calloc.c \
+		ft_memmove.c \
 		ft_memcpy.c \
 		ft_memset.c) \
 		$(addprefix $(STK_DIR), ft_stkpush.c \

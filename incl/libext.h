@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 15:54:40 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 18:33:08 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char				ft_chrmatchr(char c, char rstart, char rend);
 
 void				*ft_calloc(size_t size, size_t len);
 void				*ft_memcpy(void *dst, void *src, size_t len);
+void				ft_memmove(void *dst, void *src, size_t n);
 void				ft_memset(void *mem, size_t len, char c);
 
 void				ft_str2del(char **str);
@@ -293,5 +294,14 @@ void				ft_lstrev(t_list **list);
 void				ft_lstsuffix(t_list **list, t_list *add);
 void				ft_plstsuffix(t_plist **list, t_plist *add);
 void				ft_lstswap(t_list **list, t_list *a, t_list *b);
+
+void				*vec_getref(t_vec *vec, size_t index);
+int					vec_nullterm(t_vec *vec);
+int					vec_realloc(t_vec *vec, size_t amount);
+int					vec_insert(t_vec *vec, void *buff, size_t amount,
+								size_t index);
+int					vec_add(t_vec *vec, void *buff, size_t amount);
+int					vec_destroy(t_vec *vec);
+int					vec_new(t_vec *vec, size_t typesize);
 
 #endif

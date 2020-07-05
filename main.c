@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 00:48:44 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 13:30:05 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 21:51:25 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "ft_printf.h"
 #include "printf.h"
 #include <string.h>
-
-
 
 /* int		main(void)
 {
@@ -32,12 +30,37 @@
 	return (1);
 } */
 
+/*
 int		main(void)
 {
 	printf("MINE: %d\n", ft_printf(IN));
 	printf("REAL: %d\n", printf(IN));
 	return (0);
 }
+*/
+
+int		main(void)
+{
+	t_vec	str;
+
+	vec_new(&str, sizeof(char));
+	vec_add(&str, "lalaba", ft_strlen("lalaba"));
+	vec_add(&str, "lalaba", ft_strlen("lalaba"));
+	vec_insert(&str, "yeet", ft_strlen("yeet"), 11);
+	vec_nullterm(&str);
+	ft_strprint(str.data);
+	vec_destroy(&str);
+}
+
+/*
+int		main(void)
+{
+	char	str[] = "lalalala";
+
+
+
+}
+*/
 
 /* int		main(void)
 {

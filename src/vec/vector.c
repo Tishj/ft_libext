@@ -6,11 +6,12 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/04 11:15:59 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/04 22:59:19 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 21:50:10 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libext.h>
+#include <string.h>
 
 int		vec_nullterm(t_vec *vec)
 {
@@ -18,7 +19,7 @@ int		vec_nullterm(t_vec *vec)
 
 	if (!vec_realloc(vec, 1))
 		return (0);
-	ft_memcpy(vec->data + (vec->size * vec->len), nulls, vec->size * 1);
+	memcpy(vec->data + (vec->size * vec->len), (char *)nulls, vec->size * 1);
 	return (1);
 }
 
@@ -33,11 +34,11 @@ int		vec_realloc(t_vec *vec, size_t amount)
 		{
 			free(realloc_data);
 			vec->capacity *= 2;
-			realloc_data = malloc(sizeof(vec->size * vec->capacity));
+			realloc_data = malloc(vec->size * vec->capacity);
 			if (!realloc_data)
 				return (0);
 		}
-		ft_memcpy(realloc_data, vec->data, vec->size * vec->len);
+		memcpy(realloc_data, vec->data, vec->size * vec->len);
 		free(vec->data);
 		vec->data = realloc_data;
 	}
@@ -56,17 +57,18 @@ int		vec_insert(t_vec *vec, void *buff, size_t amount, size_t index)
 		return (0);
 	if (index >= vec->len)
 		return (vec_add(vec, buff, amount));
-	ft_memmove(vec->data + (vec->size * (vec->len + amount)),
-			vec->data + (vec->size * vec->len), vec->size * amount);
-	ft_memcpy(vec->data + (vec->size * vec->len), buff, vec->size * amount);
+	memmove(vec->data + (vec->size * (index + amount)),
+		vec->data + (vec->size * index), vec->size * (vec->len - index));
+	memcpy(vec->data + (vec->size * index), buff, vec->size * amount);
 	vec->len += amount;
+	return (1);
 }
 
 int		vec_add(t_vec *vec, void *buff, size_t amount)
 {
 	if (!vec_realloc(vec, amount))
 		return (0);
-	ft_memcpy(vec->data + (vec->size * vec->len), buff, vec->size * amount);
+	memcpy(vec->data + (vec->size * vec->len), buff, vec->size * amount);
 	vec->len += amount;
 	return (1);
 }

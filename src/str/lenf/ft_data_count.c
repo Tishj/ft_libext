@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/14 11:51:41 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/03/17 21:41:26 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 22:20:56 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ size_t	ft_data_count_excl(t_lenf *data, va_list list, char *str)
 	}
 	else if (ft_chrmatchc(*str, 'w'))
 		data->exclude = ft_stradd(data->exclude, (char *)whitespaces);
-//	else
-//		exit(ft_error());
 	return (2);
 }
 
@@ -56,8 +54,6 @@ size_t	ft_data_count_incl(t_lenf *data, va_list list, char *str)
 	}
 	else if (ft_chrmatchc(*str, 'w'))
 		data->include = ft_stradd(data->include, (char *)whitespaces);
-//	else
-//		exit(ft_error());
 	return (1);
 }
 

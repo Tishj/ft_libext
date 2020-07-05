@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 18:33:08 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 22:37:44 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,12 +227,20 @@ void				ft_strshift(char *str, long long shift);
 void				ft_numprint(int nb);
 void				ft_numprintbase(int nb, int base);
 long long			ft_absnum(long long nb);
+long long			ft_nummax(long long a, long long b);
+long long			ft_nummax(long long a, long long b);
 char				**ft_str2dup(char **str);
+void				ft_str2fmap(char **str, char *(*f)(char *str, char *arg),
+								char *arg);
 void				ft_str2prefix(char **str, char *prefix);
 void				ft_str2suffix(char **str, char *suffix);
 char				*ft_strgenc(char c, size_t len);
+char				*ft_strblockrevget(char *str, char *delim, size_t index);
 void				ft_strtrunc(char *start, size_t size);
 char				*ft_strchr(char *str, char c);
+void				ft_strreplacec(char *str, char c, char replace);
+void				ft_strconvl(char *str);
+void				ft_strconvu(char *str);
 t_list				*ft_str2convlst(char **str2);
 long long			ft_str2cmpstr(char **str2, char *str);
 long long			ft_str2ncmpstr(char **str2, char *str);

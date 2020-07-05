@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/07/05 18:32:37 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/07/05 22:45:09 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_lstinfix.c \
 		ft_lstlen.c \
 		ft_lstnew.c \
+		ft_lstlookup.c \
 		ft_lstnptr.c \
 		ft_lstprint.c \
 		ft_lstprefix.c \
@@ -105,6 +106,8 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		$(addprefix $(NUM_DIR), ft_numprint.c \
 		ft_numlenu_base.c \
 		ft_numstru_base.c \
+		ft_nummax.c \
+		ft_nummin.c \
 		ft_numlenul_base.c \
 		ft_numstrul_base.c \
 		ft_numlen_base.c \
@@ -215,6 +218,10 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_strnskip.c \
 		ft_strprefix.c \
 		ft_strprint.c \
+		ft_strreplacec.c \
+		ft_strconvl.c \
+		ft_strconvu.c \
+		ft_str2fmap.c \
 		ft_strrev.c \
 		ft_strrlen.c \
 		ft_strrlenc.c \

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/23 17:28:13 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 15:56:16 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 22:16:46 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #define ERROR -1
 
-char	*program_end(t_pfdata *data, int *ret)
+char		*program_end(t_pfdata *data, int *ret)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ static void	no_conv(t_pfdata *data)
 	data->ret += skip;
 }
 
-char	*ft_sprintf(int *ret, char *arguments, ...)
+char		*ft_sprintf(int *ret, char *arguments, ...)
 {
 	t_pfdata	data;
 

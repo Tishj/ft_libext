@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/28 11:20:27 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/03/30 11:27:50 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 22:20:13 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 **	This function returns a heap allocated string and also frees 'org'
 */
+
 char	*ft_strreplace(char *org, char *before, char *after)
 {
 	char	*new;

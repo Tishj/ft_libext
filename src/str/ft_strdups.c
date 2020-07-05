@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/12 01:54:34 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/03/30 12:23:08 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 22:19:45 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ char	*ft_strdups(char *str, char *set)
 		if (ft_chrmatchs(str[i], set))
 		{
 			new[n] = str[i];
-			if (!new)
-				return (NULL);
 			n++;
 		}
 		i++;

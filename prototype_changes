@@ -1,2 +1,0 @@
-char	*ft_straddr(char *str, char rstart, char rend);
-void	ft_data_init(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/04 23:59:43 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 15:54:40 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <ft_printf.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 128

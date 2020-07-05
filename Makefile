@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/07/05 15:27:41 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/07/05 15:54:10 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_chrswapc.c \
 		ft_chrmatchw.c) \
 		$(addprefix $(PRINTF_DIR), ft_printf.c \
+		ft_sprintf.c \
 		conv_chr.c \
 		conv_di.c \
 		conv_str.c \

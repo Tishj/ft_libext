@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/22 23:28:56 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 15:24:20 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/07/05 15:49:51 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ enum			e_conv
 typedef int		(*t_convf)(t_pfdata *data, t_pfconv *conv);
 
 int				ft_printf(char *arguments, ...);
+char			*ft_sprintf(int *ret, char *arguments, ...);
 int				parseconv(t_pfdata *data);
 char			*numpadding(char *num, t_pfconv *conv, int len);
 void			debug(t_pfconv *conv);

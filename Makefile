@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/11 23:29:26 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/07/05 22:45:09 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/10/04 15:40:58 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		parse.c) \
 		$(addprefix $(VEC_DIR), vec_destroy.c \
 		vec_getref.c \
+		vec_erase.c \
 		vec_new.c \
 		vector.c) \
 		$(addprefix $(TREE_DIR), ft_treeaddparent.c \
@@ -76,6 +77,7 @@ SRC =	$(addprefix $(CHR_DIR), ft_chrmatchc.c \
 		ft_lstinfix.c \
 		ft_lstlen.c \
 		ft_lstnew.c \
+		ft_lstaddback.c \
 		ft_lstlookup.c \
 		ft_lstnptr.c \
 		ft_lstprint.c \

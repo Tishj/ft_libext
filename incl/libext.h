@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/11 23:31:23 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 22:37:44 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/10/04 15:41:33 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,6 +290,7 @@ void				ft_lstdel(t_list **list, t_list *elem,
 						void (*del)(void *item));
 char				ft_lstcmp(void *a, void *b,
 						char (*cmp)(void *item1, void *item2));
+void				ft_lstaddback(t_list **list, t_list *new);
 size_t				ft_lstlen(t_list *list);
 HEAP				*ft_lstnew(void *item);
 t_list				*ft_lstnptr(t_list *list, size_t n);
@@ -304,6 +305,7 @@ void				ft_plstsuffix(t_plist **list, t_plist *add);
 void				ft_lstswap(t_list **list, t_list *a, t_list *b);
 
 void				*vec_getref(t_vec *vec, size_t index);
+int					vec_erase(t_vec *vec, size_t index, size_t len);
 int					vec_nullterm(t_vec *vec);
 int					vec_realloc(t_vec *vec, size_t amount);
 int					vec_insert(t_vec *vec, void *buff, size_t amount,

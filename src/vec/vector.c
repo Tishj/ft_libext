@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/04 11:15:59 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/07/05 21:56:51 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/10/04 23:11:06 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		vec_nullterm(t_vec *vec)
 	if (!vec_realloc(vec, 1))
 		return (0);
 	ft_memcpy(vec->data + (vec->size * vec->len), (char *)nulls, vec->size * 1);
+	vec->len++;
 	return (1);
 }
 
@@ -33,7 +34,10 @@ int		vec_realloc(t_vec *vec, size_t amount)
 		while (vec->len + amount >= vec->capacity)
 		{
 			free(realloc_data);
-			vec->capacity *= 2;
+			if (vec->capacity)
+				vec->capacity *= 2;
+			else
+				vec->capacity = 4;
 			realloc_data = malloc(vec->size * vec->capacity);
 			if (!realloc_data)
 				return (0);
